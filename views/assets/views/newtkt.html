@@ -1,0 +1,40 @@
+<div class='col-md-12 col-sm-12 col-xs-12'>
+  <ul class="breadcrumb" style="font-size:16px;">
+    <li ng-click="route('/dashboard')"><a>Home</a></li>
+    <li ng-click="route('/tickets')"><a>Tickets</a></li>
+    <li class="active">New Ticket</li>
+  </ul>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12">
+  <div class="panel panel-info col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="panel-body">
+      <table class="table table-hover" style="font-size:14px;">
+        <tr><td>Ticket Title : </td><td><input type="text" class="form-control"></td></tr>
+        <tr><td>Ticket Description : </td><td><textarea type="text" class="form-control" rows="5"></textarea></td></tr>
+        <tr><td>Related Customers : </td><td><input type="text" placeholder="Add as many customers as tags. Typeahead here." class="form-control"></td></tr>
+        <tr><td>Priority : </td><td>
+          <div class="dropdown tasks-menu input-group add-on" dropdown dropdownToggle style="margin-bottom:0px;">
+            <div class="input-group add-on dropdown-toggle">
+              <input class="form-control" type="text">
+            </div>
+            <ul class="dropdown-menu" role="menu" style="margin-top:-15px;">
+              <li>
+                <a href="#" class="dropdown-item">High</a>
+              </li>
+              <li>
+                <a href="#" class="dropdown-item">Medium</a>
+              </li>
+              <li>
+                <a href="#" class="dropdown-item">Low</a>
+              </li>
+            </ul>
+          </div>
+
+        </td></tr>
+        <tr><td>Close by Date : </td><td><input type="date" class="form-control"></td></tr>
+        <tr><td>Assign to : </td><td><input type="text" placeholder="Default is user himself. Opens a typeahead of other users added as tags." class="form-control"></td></tr>
+      </table>
+      <button class="btn btn-info pull-right col-xs-3" ng-click="route('/tickets')"><b>Submit</b></button>
+    </div>
+  </div>
+</div>

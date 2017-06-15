@@ -1,0 +1,56 @@
+<div class="panel-body" style="font-size:14px;">
+        <div class="th">New Item</div>
+        <table class="table table-hover">
+          <tr><td>Title: </td><td><input type="text" class="form-control"></td></tr>
+          <tr><td>Description: </td><td><textarea type="text" class="form-control" rows="3"></textarea></td></tr>
+          <tr><td>Image: </td><td><input type="file" class="form-control"></td></tr>
+          <tr><td>Categories: </td><td><input type="text" class="form-control" placeholder="Typeahead. Choose from list of available categories."></td></tr>
+          <tr *ngIf="prices.length==0">
+            <td>Price : </td>
+            <td><div class="input-group add-on dropdown-toggle">
+                  <input class="form-control" placeholder="" type="text">
+                  <div class="input-group-btn">
+                      <button class="btn btn-info" title="Add more price variations" (click)="moreparams('prices',{parameter:'',price:''})"><i class="fa fa-plus"></i></button>
+                  </div>
+                </div>
+              </td>
+          </tr>
+        </table>
+        <div class="col-xs-12" *ngFor="let entry of prices">
+          <hr style="margin:10px;">
+          <div class="col-xs-4">
+            <p>Parameter:</p>
+            <input type="text" class="form-control" placeholder="eg: Size">
+          </div>
+          <div class="col-xs-4">
+            <p>Value:</p>
+            <input type="text" class="form-control" placeholder="eg: 10">
+          </div>
+          <div class="col-xs-3">
+            <p>Price:</p>
+            <input type="number" class="form-control" placeholder="eg: 100">
+          </div>
+          <div class="col-xs-1">
+            <button class="btn btn-info" title="Add more price variations" (click)="moreparams('prices',{parameter:'',price:''})"><i class="fa fa-plus"></i></button>     
+          </div>
+        </div>
+        <div class="col-xs-12" *ngFor="let entry of params">
+          <hr style="margin:10px;">
+          <div class="col-xs-4">
+            <p>Parameter:</p>
+            <input type="text" class="form-control" placeholder="eg: Guarentee">
+          </div><div class="col-xs-4"></div>
+          <div class="col-xs-7">
+            <p>Value:</p>
+            <input type="text" class="form-control" placeholder="eg:6 Months">
+          </div>
+          <div class="col-xs-1">
+            <button class="btn btn-info" title="Add more parameters"  (click)="moreparams('params',{parameter:'',value:''})"><i class="fa fa-plus"></i></button>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <hr style="margin:10px;">
+          <button class="btn btn-info pull-left col-xs-3" *ngIf="params.length==0" (click)="moreparams('params',{parameter:'',value:''})">Add Parameters</button>
+          <button class="btn btn-info pull-right col-xs-3"><b>Create</b></button>
+        </div>
+      </div>

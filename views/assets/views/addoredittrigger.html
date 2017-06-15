@@ -1,0 +1,142 @@
+<style type="text/css">
+  #phone > span, #email > span {
+    cursor:pointer;
+    display:block;
+    float:left;
+    color:#fff;
+    background:#789;
+    padding:5px;
+    padding-right:25px;
+    margin:4px;
+  }
+  #phone > span:hover, #email > span:hover{
+    opacity:0.7;
+  }
+  #phone > span:after, #email > span:after{
+   position:absolute;
+   content:"×";
+   border:1px solid;
+   padding:2px 5px;
+   margin-left:3px;
+   font-size:11px;
+  }
+</style>
+<div classs="container" ng-controller="triggerCtrl" ng-cloak>
+  <div class="x_panel tile">
+    <div class="col-xs-12">
+      <div>
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div ng-init="details(selected)" style="padding:10px;">
+            <form role="form" name="myForm">
+              <table class="table table-hover">
+                <thead>
+                  <label ng-show="newtrigger && edittrigger">Add Trigger</label>
+                  <label ng-show="!newtrigger && edittrigger">Edit Trigger</label>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Location</td> 
+                    <td>
+                      <input ng-show="newtrigger && !edittrigger" type="text" typeahead="state as state.displayname for state in locations | filter:$viewValue | limitTo:8" ng-model="trigger.loc" class="form-control" placeholder="Choose Trigger Location" >
+                      <span ng-show="!newtrigger && edittrigger">{{trigger.displayloc}}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Event</td>
+                    <td>
+                      <select  ng-show="newtrigger && !edittrigger" ng-model="trigger.eventdtls" class="form-control" ng-options="item as item.fename for item in events track by item.fename">
+                      </select>
+                      <span ng-show="!newtrigger && edittrigger">{{trigger.eventdtls.fename}}</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>Phone</td>
+                    <td>
+                      <div id="phone">
+                        <span ng-show="trigger.sms.length" ng-click="removeitem('sms',$index)" ng-repeat="sms in trigger.sms">{{sms}}</span>
+                        <input class="form-control" type="number" name="phone" pattern=".{10,}" value="" placeholder="Seperate numbers with comma" />
+                        <span class="error" ng-show="myForm.phone.$error.pattern">Minimum 10 characters required</span>
+                      </div>
+                    </td>       
+                  </tr>
+                  <tr>
+                    <td>Email</td>
+                    <td>
+                      <div id="email">
+                        <span ng-show="trigger.email.length" ng-click="removeitem('email',$index)" ng-repeat="email in trigger.email">{{email}}</span>
+                        <input type="email" name="email" class="form-control" ng-pattern="/^[aA-zZ]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" placeholder="Seperate emails with commas">
+                        <span class="error" ng-show="myForm.email.$error.email || myForm.email.$error.pattern">Please enter a valid email id!</span>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <input type="checkbox" ng-model="trigger.active" checked data-toggle="toggle" data-onstyle="info">Active
+                    </td>
+                    <td></td>
+                  </tr>
+                </tbody>
+              </table> 
+            </form>
+            <div align="right" ng-show="!newtrigger && edittrigger">
+              <button class="btn btn-default" ng-click="canceladdoredit(trigger,'edit')">Cancel</button>
+              <button class="btn btn-info" ng-click="save(trigger,'edittrigger')">Submit</button>
+            </div>     
+            <div align="right" ng-show="newtrigger && !edittrigger">
+              <button class="btn btn-default" ng-click="canceladdoredit(trigger,'add')">Cancel</button>
+              <button class="btn btn-info" ng-click="save(trigger,'addtrigger')">Submit</button>
+            </div>     
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+      $(function(){
+        window.phonearr = [];
+        window.emailarr = [];
+        $("#phone input").on({
+          focusout : function() {
+            var phonetxt = this.value.replace(/[^a-z0-9\+\-\.\#]/ig,''); // allowed characters
+            if(phonetxt) $("<span/>", {text:phonetxt.toLowerCase(), insertBefore:this});
+            window.phonearr.push(phonetxt);
+            // console.log(window.arr);
+            this.value = "";
+          }, 
+          load : function() {
+            var phonetxt = this.value.replace(/[^a-z0-9\+\-\.\#]/ig,''); // allowed characters
+            if(phonetxt) $("<span/>", {text:phonetxt.toLowerCase(), insertBefore:this});
+            window.phonearr.push(phonetxt);
+            // console.log(window.arr);
+            this.value = "";
+          },
+          keyup : function(ev) {
+            // if: comma|enter (delimit more keyCodes with | pipe)
+            if(/(188|13)/.test(ev.which)) $(this).focusout(); 
+          }
+        });
+        $('#phone').on('click', 'span', function() {
+            window.phonearr.splice( $.inArray($(this).text(),window.phonearr) ,1 );
+            $(this).remove(); 
+        });
+
+        $("#email input").on({
+          focusout : function() {
+            var emailtxt = this.value.replace(/,/g,''); // allowed characters
+            if(emailtxt) $("<span/>", {text:emailtxt.toLowerCase(), insertBefore:this});
+            window.emailarr.push(emailtxt);
+            // console.log(window.arr);
+            this.value = "";
+          },
+          keyup : function(ev) {
+            // if: comma|enter (delimit more keyCodes with | pipe)
+            if(/(188|13)/.test(ev.which)) $(this).focusout(); 
+          }
+        });
+        $('#email').on('click', 'span', function() {
+            window.emailarr.splice( $.inArray($(this).text(),window.emailarr) ,1 );
+            $(this).remove();
+        });
+      });
+    </script>

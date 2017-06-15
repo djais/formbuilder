@@ -1,0 +1,17 @@
+<div class="col-xs-12">
+  <div class="panel panel-info">
+    <div class="panel-heading"><h4>Upload Catalog/Menu</h4></div>
+    <div class="panel-body">
+      <p class="text-muted">Upload an Excel file to create a new Catalog or Menu. Please ensure that the Excel file uploaded is in the format specified in <a><b>Help Section</b></a>.</p>
+      <br><br>
+      <label class="control-label">Upload File:</label>
+      <input type="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" placeholder="">
+      <br><br>
+      <hr style="margin:15px;">
+      <div class="pull-right">
+        <button class="btn btn-default" ng-click="route('ctlgmnu')">Cancel</button>
+        <button class="btn btn-info" (click)="switchview('usual')">Submit</button>
+      </div>
+    </div>
+  </div>  
+</div>

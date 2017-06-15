@@ -1,0 +1,55 @@
+<div class="col-xs-12" ng-controller="devicesCtrl" ng-init="init()" ng-cloak>
+<!--   <div class="row" style="margin-bottom:10px;" ng-controller="minidashCtrl">
+    <div class="col-md-3 col-sm-6 col-xs-6" ng-repeat="info in topic.customers">
+      <div style='background-color:#276b8c; color:#ffffff; padding:1px; border-radius:2px; margin-bottom:5px;'>
+        <div class="inner">
+          <center><h4><b>{{info.main}}</b></h4></center>
+          <center><p>{{info.sub}}</p></center>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+    <div class='col-xs-12 x_panel tile' style="padding:15px 2px 15px 2px;;">
+      <div class="col-xs-3">
+        <div class="input-group add-on dropdown-toggle">
+          <input class="form-control" ng-model="searchKey" placeholder="Search" type="text">
+          <div class="input-group-btn">
+            <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  <!-- <div class="row"> -->
+    <div class='col-md-12 col-sm-12 col-xs-12' style="padding:0px;">
+      <div class="x_panel tile">
+          <div class="x_content" infinite-scroll='rytapi.nextPage()' infinite-scroll-disabled='rytapi.busy' infinite-scroll-distance='1'>
+          <table class="table table-hover" style="width:100%">
+            <thead>
+              <th>  </th>
+              <th> Name </th>
+              <th> device Id </th>
+              <th> Serial # </th>
+              <th> Location </th>
+              <th> Last Update </th>
+            </thead>
+            <tbody>
+              <tr ng-repeat="device in rytapi.items | filter:searchKey" style='cursor:pointer;' ng-click="gotoDetail(device,'/devicedtls')">
+                <td > <i class='fa fa-check-circle ryt-green'  ng-show='isOnline(device.deviceid)'> </i>
+            <i class='fa fa-warning ryt-red' ng-show='!isOnline(device.deviceid)'> </i> </td>
+                <td>{{device.name}}</td>
+                <td>{{device.deviceid}}</td>
+                <td>{{device.serial}}</td>
+                <td>{{device.loc}}</td>
+                <td>{{device.info.stime | date:'dd-MMM-yyyy HH:mm'}}
+              </tr>
+            </tbody>
+          </table>
+          <h2 style='color:#bbbbbb; text-align:center' ng-show='!rytapi.complete'><i class='fa fa-circle-o-notch fa-spin'></i></h2>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+</div>

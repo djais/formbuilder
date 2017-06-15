@@ -1,0 +1,81 @@
+				<div class="x_panel tile">
+          <label ng-show="newlocation" style="font-weight:300; font-size:18px; padding:10px;">Add Location</label>
+          <label ng-show="editlocation" style="font-weight:300; font-size:18px; padding:10px;">{{location.displayname}}</label>
+          <div ng-show="newlocation" class="pull-right" style="padding:10px;" ng-click="canceladdoredit('locations','newlocation')">
+	          <i class="fa fa-times"></i>
+          </div>
+          <div ng-show="editlocation" class="pull-right" style="padding:10px;" ng-click="canceladdoredit('locations','editlocation')">
+	          <i class="fa fa-times"></i>
+          </div>
+          <hr style="margin-bottom: 0px;">
+          <div class="x_content" style="padding:15px;">
+            <form role="form" name="myForm">
+		          <div class="form-group" ng-show="newlocation && !editlocation">
+		            <label class='text-muted'>Location Name</label><small style="color:#E04427; font-weight: 400; font-size:14px"><sup>*required</sup></small> 
+		            <input type="text" ng-model="location.name" class="form-control ryt-input" placeholder=""/>
+		            <span style="color:#E04427; font-size:14px;" ng-hide="checkalrdyexist()">This location name already exists. Please choose another location name.</span>
+		          </div>
+		          <div class="form-group">
+		            <label class='text-muted'>City</label> 
+		            <input type="text" ng-model="location.city" class="form-control ryt-input" placeholder=""/>
+		          </div>
+		          <div class="form-group">
+		            <label class='text-muted'>Country</label> 
+		            <input type="text" ng-model="location.country" class="form-control ryt-input" placeholder=""/>
+		          </div>
+		          <div class="form-group">
+		            <label class='text-muted'>Zip Code</label> 
+		            <input type="number" ng-model="location.zip" class="form-control ryt-input" placeholder=""/>
+		          </div>
+		          <div class="form-group">
+		            <label class='text-muted'>Phone</label>
+		            <input type="number" ng-model="location.phone" name="phone" class="form-control" pattern=".{10,}"
+		                 placeholder="">
+		            <span class="error" ng-show="myForm.phone.$error.pattern">Minimum 10 characters required
+		            </span>
+		          </div>
+		          <div class="form-group">
+		            <label class='text-muted'>Email</label>
+		            <input type="email"  class="form-control ryt-input" ng-pattern="/^[aA-zZ]+[a-z0-9._]+@[a-z]+\.[a-z.]{2,5}$/" name="input" ng-model="location.email" placeholder="">
+		            <span class="error" ng-show="myForm.input.$error.required">Required!</span>
+		            <span class="error" ng-show="myForm.input.$error.email || myForm.input.$error.pattern">
+		            Please enter a valid email id!</span>
+		          </div>
+		          <div class="form-group">
+		            <label class='text-muted'>Manager</label> 
+		            <input type="text" ng-model="location.manager" class="form-control ryt-input" placeholder=""/>
+		          </div>
+		          <div class="form-group">
+		          	<div class="form-group col-xs-6" style="padding:0px 5px 0px 0px;">
+			            <label class='text-muted'>Longitude</label> 
+			            <input type="text" ng-model="location.longitude" class="form-control ryt-input" placeholder=""/>
+			          </div>
+		          	<div class="form-group col-xs-6" style="padding:0px;">
+			            <label class='text-muted'>Latitude</label> 
+			            <input type="text" ng-model="location.latitude" class="form-control ryt-input" placeholder=""/>
+			          </div>
+		          </div>
+		          <div class="form-group">
+		          	<div class="form-group col-xs-6" style="padding:0px 5px 0px 0px;">
+			            <label class='text-muted'>Open Time</label> 
+			            <input type="time" ng-model="location.open_time" class="form-control ryt-input" placeholder=""/>
+			          </div>
+		          	<div class="form-group col-xs-6" style="padding:0px;">
+			            <label class='text-muted'>Close Time</label> 
+			            <input type="time" ng-model="location.close_time" class="form-control ryt-input" placeholder=""/>
+			          </div>
+		          </div>
+		          <div class="form-group">
+		            <label class='text-muted'>Closed Days</label> 
+		            <input type="text" ng-model="location.closed_days" class="form-control ryt-input" placeholder="Eg: Saturday,Sunday"/>
+		          </div>
+		        </form>
+			      <hr style="margin:15px;">
+			      <div class="pull-right">
+			        <button ng-show="newlocation" class="btn btn-default" ng-click="canceladdoredit('locations','newlocation')">Cancel</button>
+			        <button ng-show="newlocation && location.name && checkalrdyexist()" class="btn btn-info" ng-click="save('locations','newlocation')">Submit</button>
+			        <button ng-show="editlocation" class="btn btn-default" ng-click="canceladdoredit('locations','editlocation')">Cancel</button>
+			        <button ng-show="editlocation && location.name" class="btn btn-info" ng-click="save('locations','editlocation')">Submit</button>
+			      </div>
+          </div>
+        </div>

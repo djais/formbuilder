@@ -1,0 +1,42 @@
+<div class="col-xs-12" ng-controller="botdtlsCtrl" ng-init="init()" ng-cloak>
+  <div class='col-md-12 col-sm-12 col-xs-12'>
+    <ul class="breadcrumb" style="font-size:16px;">
+      <li ng-click="route('/dashboard')"><a>Home</a></li>
+      <li ng-click="route('/bots')"><a>FB Chatbots</a></li>
+      <li class="active">Bot Details</li>
+    </ul>
+  </div>
+
+<!--   <div class='col-md-12 col-sm-12 col-xs-12' ng-controller="TabsCtrl">
+    <div class="x_panel">
+      <button class="btn btn-default" ng-repeat="tab in tabs.feedbacks" ng-class="{'btn-info':isActiveTab(tab.url)}" ng-click="onClickTab(tab)" style="margin:2px;">{{tab.title}}</button>
+    </div>
+  </div> -->
+
+ <div class="col-xs-12 col-sm-12 col-md-5">
+    <div class="box box-primary" style="padding:10px;">
+      <table class="table table-hover" style="font-size:14px;">
+        <div class="th" style="font-size:16px;">App Details</div>
+        <tr><td>Id :</td> 
+        <td>{{selected.show.id}}</td> </tr>
+        <tr><td>Unanswered Queries :</td> 
+        <td>{{selected.show.unanswered}}</td> </tr>
+      </table>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-7">
+    <!-- <div class="panel panel-info col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-controller="TabsCtrl"> -->
+      <!-- <div class="panel-body">
+        <div ng-include="currentTab"></div>
+      </div> -->
+      <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs"  ng-controller="TabsCtrl">
+                  <li ng-repeat="tab in tabs.devices" ng-class="{'active':isActiveTab(tab.url)}" ng-click="onClickTab(tab)" style="margin:2px;"><a data-toggle="tab">{{tab.title}}</a></li>
+                </ul>
+                <div class="tab-content">
+                  <div ng-include="currentTab"></div>
+                </div>
+              </div>
+    <!-- </div> -->
+  </div>  
+</div>

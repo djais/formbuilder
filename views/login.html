@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- <base href="/fe/"> -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>RytAngle- Login</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/assets/lib/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom Google Web Font -->
+    <link href="/assets/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+
+
+    <!-- Add custom CSS here -->
+    <link href="/assets/css/landing-page.css" rel="stylesheet">
+<style>
+i{
+  width:14px;
+}
+
+.input-group{
+  margin-top:15px;
+}
+</style>
+
+</head>
+
+<body style='background:url("/assets/img/bg.jpg") no-repeat center; background-size:100%'>
+
+
+ <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+            <div >
+                <a class="navbar-brand" href='https://rytangle.com'><img class='temp-logo' src='/assets/img/logo.png' alt='RYTANGLE' > <font style='color:red;font-size:9px;position:absolute; margin-top:-35px;margin-left:135px;'> Beta </font></a>
+                <!-- <a href='Signup' class='pull-right ryt-nav-btn-red'>
+                  Sign Up
+                </a> -->
+            </div>
+        <!-- /.container -->
+    </div>
+
+	<div class='container'>
+        <div class="col-md-6 col-md-offset-3 form-container">
+		 <h3 style='color:#999999; text-align:center;'> Login to your account </h3>
+     <hr>
+
+		<div id='reg_form_alert'></div>
+
+			<form id='signupForm' action='/login' method='POST' class="form" role="form">
+				<div class='form-group'>
+            <div class="input-group">
+              <span class="input-group-addon" id="basic-addon2"><i class='fa fa-envelope'></i></span>
+              <input type="email" name='email' class="form-control input-lg" placeholder="Email" aria-describedby="basic-addon2" required>
+            </div>
+                <div class="input-group">
+                  <span class="input-group-addon" id="basic-addon1"><i class='fa fa-lock'></i></span>
+                  <input type="password" name='passwd' class="form-control input-lg" placeholder="Password" aria-describedby="basic-addon1" required>
+                </div>
+              </div>
+              <button type="submit" class="btn btn-success btn-lg form-btn">Login</button>
+			</form><!-- /.signupForm -->
+      <div style='margin-top:20px;'>
+        <a class='pull-right' href='/forgotpassword'> Forgot Password? </a>
+      </div>
+
+        </div> <!-- /. col-md-6 -->
+
+        </div>
+        <!-- /.container -->
+    <footer class='footer'>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="copyright text-muted small">Copyright &copy;2017 Cubestack Solutions Pvt. Ltd. All Rights Reserved</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- JavaScript -->
+    <script src="/assets/lib/js/jquery.min.js"></script>
+    <script src="/assets/lib/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

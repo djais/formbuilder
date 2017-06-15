@@ -1,0 +1,51 @@
+<div classs="container">
+  <div class="x_panel tile">
+    <div class="col-xs-12" ng-controller="triggerCtrl" ng-cloak>
+      <div ng-show="!edittrigg">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+          <div ng-init="details(selected)" style="padding:10px;">
+            <table class="table table-hover">
+              <thead>
+                <label>Trigger Details</label>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Location</td> 
+                  <td>{{selected.displayloc}}</td>
+                </tr>
+                <tr>
+                  <td>Event</td>
+                  <td>{{selected.eventdtls.fename}}</td>
+                </tr>
+                <tr>
+                  <td>Active</td>
+                  <td>{{selected.active}}</td>
+                </tr>
+                <tr>
+                  <td>Phone</td>
+                  <td>
+                    <li style="list-style:none;">
+                      <ul style="padding:0px;" ng-repeat="sms in selected.sms">{{sms}}</ul>
+                    </li>
+                  </td>       
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td>
+                    <li style="list-style:none;">
+                      <ul style="padding:0px;" ng-repeat="email in selected.email">{{email}}</ul>
+                    </li>
+                  </td>
+                </tr>
+              </tbody>
+            </table> 
+            <div align="right">
+              <button class="btn btn-default" ng-click="removetrig(selected,'edit')">Remove</button>
+              <button class="btn btn-info" ng-click="addoredittrigg(selected,'edittrigger')">Edit</button>
+            </div>     
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

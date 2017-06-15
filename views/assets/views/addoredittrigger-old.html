@@ -1,0 +1,66 @@
+<div classs="container" ng-controller="triggerCtrl">
+  <div class="x_panel tile">        
+    <div class="row">
+      <form role="form" name="myForm">
+        <div ng-show="!newtrigger==true">
+          <div class="col-lg-5 col-xs-12 col-md-5" >
+            <div class="form-group" style="margin-bottom: 2%;">
+              <label class='text-muted'>Selected Location Name</label>
+              <span>{{trigger.city}}</span>
+            </div>
+          </div>
+          <div class="col-lg-5 col-xs-12 col-md-5">
+            <div class="form-group" style="margin-bottom: 2%;">
+              <label class='text-muted'>Selected Event Name</label>
+              <pre style="width:50%">{{trigger.event}}</pre>
+            </div>
+          </div>
+        </div>
+        <div ng-show="newtrigger==true">
+          <div class="form-group" style="margin-bottom:2%;">
+            <div class="col-lg-5 col-xs-12 col-md-5" >
+              <label class='text-muted'  style="margin-bottom:5%;">Location Name</label>
+              <input type="text" ng-model="selected" uib-typeahead="state for state in states | filter:$viewValue | limitTo:8" class="form-control">
+            </div>
+          </div>
+          <div class="col-lg-5 col-xs-12 col-md-5" style="margin-bottom:2%;">
+            <div class="form-group" >
+              <label class='text-muted' style="margin-bottom:5%;">Event Name</label>
+              <select ng-model="trigger.event" ng-options="x for x in events" class="form-control" ng-required="true">
+                <option value="">------Select event----</option>
+              </select> 
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 col-xs-12 col-md-5">
+          <div class="form-group" >
+            <label class='text-muted'  style="margin-bottom: 5%;">Phone</label>
+            <div ng-class="{'has-error': myForm.Phone.$invalid}">
+              <textarea type="text" class="form-control" rows="4" multiple-phone required name="Phone" ng-model="trigger.phone"></textarea>
+            </div>
+            <span class="error" ng-show="check==true">Please Enter Valid Phone Number</span>
+          </div>
+        </div>
+        <div class="col-lg-5 col-xs-12 col-md-5">
+          <div class="form-group">
+            <label class='text-muted'  style="margin-bottom: 5%;">Email</label>
+            <div ng-class="{'has-error': myForm.Email.$invalid}">
+              <textarea type="text" class="form-control" rows="4" multiple-emails required name="Email" ng-model="trigger.email"></textarea>
+            </div>
+          </div>
+        </div>
+        <br>
+        <div class="form-group">
+          <div class="col-xs-5" style="margin-top: 2%;">
+            <label><input type="checkbox" ng-model="trigger.active" value=true></label>
+            <label class='text-muted'>Active</label>&nbsp;&nbsp;
+          </div>
+        </div>
+        <div class="pull-right" style="margin-right:18%; margin-top:5%;margin-bottom: 2%">
+          <button class="btn btn-default" style="margin-top: 5%;" ng-click="route('')">Cancel</button>
+          <button class="btn btn-info" style="margin-top: 5%;" ng-click="save('/settings')">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

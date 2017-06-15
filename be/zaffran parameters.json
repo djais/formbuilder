@@ -1,0 +1,92 @@
+
+{
+    "gid" : "592fc1f141bf5b7577210ddffe21aab1",
+    "active" : true,
+    "type" : "fbapp",
+    "parameters" : {
+        "rating" : {
+            "head" : "rating",
+            "visible": true,
+            "type" : "num",
+            "scale" : 5,
+            "val" : "",
+            "concern" : true,
+            "desc" : [],
+            "visible" : true,
+            "que" : "Please rate your experience at Zaffran"
+        },
+        "service" : {
+            "head" : "service",
+            "visible": true,
+            "type" : "bool",
+            "val" : "",
+            "concern" : true,
+            "desc" : [],
+            "visible" : true,
+            "que" : "Services"
+        },
+        "food" : {
+            "head" : "food",
+            "visible": true,
+            "type" : "bool",
+            "val" : "",
+            "concern" : true,
+            "desc" : [],
+            "visible" : true,
+            "que" : "Food"
+        },
+        "ambience" : {
+            "head" : "ambience",
+            "visible": true,
+            "type" : "bool",
+            "val" : "",
+            "concern" : true,
+            "desc" : [],
+            "visible" : true,
+            "que" : "Ambience"
+        },
+        "visit" : {
+            "head" : "visit",
+            "visible": true,
+            "type" : "bool",
+            "val" : "",
+            "concern" : false,
+            "desc" : [],
+            "visible" : true,
+            "que" : "How often do you visit Zaffran?"
+        },
+        "refer" : {
+            "head" : "refer",
+            "visible": true,
+            "type" : "obj",
+            "val" : "",
+            "concern" : false,
+            "desc" : [ 
+                {
+                    "name" : "",
+                    "phone" : ""
+                }
+            ],
+            "visible" : true,
+            "que" : "Give your loved ones a 10% discount on their visit.."
+        },
+        "favdish" : {
+            "head" : "favdish",
+            "visible": true,
+            "type" : "string",
+            "val" : "",
+            "concern" : false,
+            "visible" : true,
+            "que" : "Which is your favourite dish at zaffran?"
+        },
+        "comment" : {
+            "head" : "comment",
+            "visible": true,
+            "type" : "string",
+            "val" : "",
+            "concern" : false,
+            "visible" : true,
+            "que" : "Comment"
+        }
+    }
+}

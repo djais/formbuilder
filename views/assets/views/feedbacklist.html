@@ -1,0 +1,35 @@
+<div class="x_panel tile" ng-controller="feedbackCtrl" ng-cloak>
+        <div class="x_content" infinite-scroll='rytapi.nextPage()' infinite-scroll-disabled='rytapi.busy' infinite-scroll-distance='1'>
+          <table class="table table-hover" style="width:100%">
+            <thead>
+              <tr>
+                <th></th>
+                <th> Date </th>
+                <th> Time </th>
+               <th>Source</th>
+               <th>Sentiment</th>
+               <th>Rating</th>
+               <th>Promoter</th>
+               <th> Concerns </th>
+               <th> Location </th>
+
+             </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="feedback in rytapi.items" style='cursor:pointer;' ng-click="gotoDetail(feedback,'feedback')">
+                <td><span ng-show='feedback.sentiment=="negative"' class='ryt-red'><i class='fa fa-exclamation-circle'></i></span>
+                <td> {{feedback.ts*1000 | date:'dd-MM-yyyy'}}</td>
+                <td> {{feedback.ts*1000 | date:'HH:mm'}}</td>
+                <td> {{feedback.source}}</td>
+                <td> {{feedback.sentiment}} </td>
+                <td> {{feedback.rating}} </td>
+                <td> {{feedback.nps}} </td>
+                <td ><span ng-bind-html='feedback.concerns.toString()|comma2br'> </span> </td>
+                <td> {{feedback.loc}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <h2 style='color:#bbbbbb; text-align:center' ng-show='!rytapi.complete'><i class='fa fa-circle-o-notch fa-spin'></i></h2>
+          <h2 style='color:#bbbbbb; text-align:center' ng-show='rytapi.complete&&!rytapi.items.length'> No Data Found</h2>
+        </div>
+      </div>

@@ -1,0 +1,17 @@
+<div class="col-xs-12 col-sm-12 col-md-12 " style="padding-top:15px;padding-left: 0%" ng-controller="formCtrl" ng-init="init()" ng-cloak>
+    <!-- <div class="panel panel-info col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-controller="TabsCtrl"> -->
+      <!-- <div class="panel-body">
+        <div ng-include="currentTab"></div>
+      </div> -->
+      <div class="nav-tabs-custom">
+          <ul class="nav nav-tabs"  ng-controller="TabsCtrl">
+
+            <li ng-repeat="tab in tabs.Formbuilder" ng-class="{'active':isActiveTab(tab.url)}" ng-click="onClickTab(tab)"><a data-toggle="tab">{{tab.title}}</a></li>
+          </ul>
+              <div class="tab-content">
+                  <div ng-include="currentTab"></div>
+              </div>    
+    <!-- </div> -->
+  
+      </div>  
+</div>  

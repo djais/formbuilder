@@ -1,0 +1,64 @@
+<div class="col-xs-12" ng-controller="devicedtlsCtrl" ng-init="init()" ng-cloak>
+  <div class='col-md-12 col-sm-12 col-xs-12'>
+    <ul class="breadcrumb" style="font-size:16px;">
+      <li ng-click="route('/dashboard')"><a>Home</a></li>
+      <li ng-click="route('/devices')"><a>Devices</a></li>
+      <li class="active">Device Details</li>
+    </ul>
+  </div>
+
+<!--   <div class='col-md-12 col-sm-12 col-xs-12' ng-controller="TabsCtrl">
+    <div class="x_panel">
+      <button class="btn btn-default" ng-repeat="tab in tabs.feedbacks" ng-class="{'btn-info':isActiveTab(tab.url)}" ng-click="onClickTab(tab)" style="margin:2px;">{{tab.title}}</button>
+    </div>
+  </div> -->
+
+  <div class="col-xs-12 col-sm-12 col-md-5">
+    <div class="box box-primary" style="padding:10px;">
+      <table class="table table-hover" style="font-size:14px;">
+        <div class="th" style="font-size:16px;">Device Details</div>
+        <tr><td>Status :</td>
+        <td><i class='fa fa-check-circle ryt-green'  ng-show='isOnline(device.deviceid)'>Online </i>
+    <i class='fa fa-warning ryt-red' ng-show='!isOnline(device.deviceid)'>Offline</i></td> </tr>
+          <tr><td>Serial Number :</td>
+        <td>{{device.serial}}</td> </tr>
+          <tr><td>Name :</td>
+        <td>{{device.name}}</td> </tr>
+           <tr><td>WiFi Name :</td>
+        <td> <span ng-show='!device.wifi'> {{device.info.wifi}}</span>
+              <span ng-show='device.wifi!=null'>{{device.wifi}}</span>
+          </td> </tr>
+         <tr><td>Location :</td>
+        <td>{{device.loc}}</td> </tr>
+          <tr><td>Device Id :</td>
+        <td>{{device.deviceid}}</td> </tr>
+          <tr><td>IP Address :</td>
+        <td>{{device.info.intf.eth0.ip}}</td> </tr>
+          <tr><td>MAC Id :</td>
+        <td>{{device.info.intf.eth0.mac}}</td> </tr>
+          <tr><td>Disk Usage :</td>
+        <td>{{device.info.disks[0].per}}  of  {{device.info.disks[0].size/1024/1024 | number:1}} GB</td> </tr>
+          <tr><td>Latest Communication :</td>
+        <td>{{device.info.stime | date:'dd-MMM-yyyy HH:mm'}}</td> </tr>
+          <tr><td>Activated on :</td>
+        <td>{{device.actTs*1000 | date:'dd-MMM-yyyy HH:mm'}}</td> </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-xs-12 col-sm-12 col-md-7">
+    <!-- <div class="panel panel-info col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-controller="TabsCtrl"> -->
+      <!-- <div class="panel-body">
+        <div ng-include="currentTab"></div>
+      </div> -->
+      <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs"  ng-controller="TabsCtrl">
+                  <li ng-repeat="tab in tabs.devices" ng-class="{'active':isActiveTab(tab.url)}" ng-click="onClickTab(tab)" style="margin:2px;"><a data-toggle="tab">{{tab.title}}</a></li>
+                </ul>
+                <div class="tab-content">
+                  <div ng-include="currentTab"></div>
+                </div>
+              </div>
+    <!-- </div> -->
+  </div>
+</div>

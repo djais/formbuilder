@@ -1,0 +1,135 @@
+<div class="container-fluid" ng-controller="advancefilterfbCtrl" ng-init="init()">
+  <div class="col-xs-12" style="margin:5px; padding:5px;" ng-show="filtershowcase.length">
+      <div class="panel panel-default" style="padding:10px;" align="right">
+        <div align="left">
+          <label ng-repeat="filter in filtershowcase" style="line-height:25px;">
+            <label class="label label-default" ng-hide="filter.head == 'From Date' || filter.head == 'To Date'" style="padding:5px; font-size:14px; font-weight:200; margin:5px;">
+              {{filter.head}}: &nbsp;{{filter.body}} &nbsp; <i class="fa fa-times" ng-click="removefrom('choosenfilters', filter)"></i>
+            </label>
+            <label class="label label-default" ng-show="filter.head == 'From Date' || filter.head == 'To Date'" style="padding:5px; font-size:14px; font-weight:200; margin:5px;">
+              {{filter.head}}: &nbsp;{{filter.body | date}} &nbsp; <i class="fa fa-times" ng-click="removefrom('choosenfilters', filter)"></i>
+            </label>
+          </label>
+        </div>
+        <hr style="padding:5px; margin:0px;">
+        <button class="btn btn-info">Submit</button>
+      </div>
+    </div>
+  <div class="row">
+    <div class="col-xs-12 col-md-4">
+      <div id="accordion" class="panel panel-info behclick-panel" style="max-height:600px; overflow:scroll">
+        <div class="panel-heading" style="padding:5px 15px;">
+          <h4>General Parameters</h4>
+        </div>
+        <div class="panel-body">
+          <div class="panel-heading">
+            <h4 class="panel-title">Timespan</h4>
+          </div>
+          <div id="collapse0" class="panel-collapse collapse in">
+            <ul class="list-group">
+              <div>
+                <div class="form-group">
+                  <label class="col-xs-12 control-label" style="font-weight:400; font-size:16px;">From Date</label>
+                  <div class="col-xs-12">
+                    <input type="date" class="form-control" placeholder="" ng-model="fromdate" ng-change="insertto('choosenfilters','From Date',fromdate)">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-xs-12 control-label" style="margin-top:10px; font-weight:600; font-size:16px;">To Date</label>
+                  <div class="col-xs-12">
+                    <input type="date" class="form-control" placeholder="" ng-model="todate" ng-change="insertto('choosenfilters','To Date',todate)">
+                  </div>
+                </div>
+              </div>
+            </ul>
+          </div>
+        </div>
+        <div class="panel-body" style="padding-bottom:15px;">
+        <hr>
+          <div class="panel-heading">
+            <h4 class="panel-title">Locations</h4>
+          </div>
+          <div id="collapse0" class="panel-collapse collapse in">
+            <ul class="list-group">
+              <div>
+                <div class="form-group">
+                  <div class="col-xs-12">
+                    <input type="text" typeahead="state for state in locations | filter:$viewValue | limitTo:8" ng-model="locvar" class="form-control" placeholder="Type here and choose from the options" typeahead-on-select="insertto('choosenfilters','Location',locvar)">
+                  </div>
+                </div>
+              </div>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-4">
+      <div id="accordion" class="panel panel-info behclick-panel" style="max-height:600px; overflow:scroll">
+        <div class="panel-heading" style="padding:5px 15px;">
+          <h4>Feedback Parameters</h4>
+        </div>
+        <div class="panel-body" ng-repeat="param in fbparameters" ng-show="param.options.length">
+          <div class="panel-heading">
+            <h4 class="panel-title">{{param.head}}</h4>
+          </div>
+          <div id="collapse0" class="panel-collapse collapse in">
+            <ul class="list-group">
+              <li class="list-group-item" ng-class="{'select':checkifinarr('choosenfilters',param,'unanswered')}" ng-click="insertto('choosenfilters',param.head,'unanswered')" ng-show="!param.required">
+                <div class="checkbox">
+                  <label>
+                    <i class="fa fa-check" ng-show="checkifinarr('choosenfilters',param,'unanswered')"></i>
+                    Unanswered
+                  </label>
+                </div>
+              </li>
+
+              <li class="list-group-item" ng-repeat="option in param.options"  ng-class="{'select' :checkifinarr('choosenfilters',param,option)}" ng-click="insertto('choosenfilters',param.head,option)">
+                <div class="checkbox">
+                  <label>
+                    <i class="fa fa-check" ng-show="checkifinarr('choosenfilters',param,option)"></i>
+                    {{option}}
+                  </label>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-xs-12 col-md-4">
+      <div id="accordion" class="panel panel-info behclick-panel" style="max-height:400px; overflow:scroll">
+        <div class="panel-heading" style="padding:5px 15px;">
+          <h4>Customer Parameters</h4>
+        </div>
+        <div class="panel-body" ng-repeat="param in custparameters" ng-show="param.options.length">
+          <div class="panel-heading">
+            <h4 class="panel-title">{{param.head}}</h4>
+          </div>
+          <div id="collapse0" class="panel-collapse collapse in">
+            <ul class="list-group">
+              <li class="list-group-item" ng-class="{'select':checkifinarr('choosenfilters',param,'unanswered')}" ng-click="insertto('choosenfilters',param.head,'unanswered')" ng-show="!param.required">
+                <div class="checkbox">
+                  <label>
+                    <i class="fa fa-check" ng-show="checkifinarr('choosenfilters',param,'unanswered')"></i>
+                    Unanswered
+                  </label>
+                </div>
+              </li>
+
+              <li class="list-group-item" ng-repeat="option in param.options"  ng-class="{'select' :checkifinarr('choosenfilters',param,option)}" ng-click="insertto('choosenfilters',param.head,option)">
+                <div class="checkbox">
+                  <label>
+                    <i class="fa fa-check" ng-show="checkifinarr('choosenfilters',param,option)"></i>
+                    {{option}}
+                  </label>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    
+  </div>
+</div>

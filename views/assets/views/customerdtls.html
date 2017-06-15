@@ -1,0 +1,65 @@
+<div class="col-xs-12" ng-controller="custdtlsCtrl" ng-init="init()" ng-cloak>
+<div class='col-md-12 col-sm-12 col-xs-12' style="padding-left:0px;">
+    <ul class="breadcrumb" style="font-size:16px;">
+      <li ng-click="route('/dashboard')"><a>Home</a></li>
+      <li ng-click="route('/customers')"><a>Customers</a></li>
+      <li class="active">Customer Details</li>
+    </ul>
+  </div>
+<!-- Main content -->
+        <section class="content">
+
+          <div class="row">
+            <div class="col-md-4">
+
+              <!-- Profile Image -->
+              <div class="box box-primary">
+                <div class="box-body box-profile">
+                  <img class="profile-user-img img-responsive img-circle" src={{customer.pic}} alt="User profile picture">
+                  <h3 class="profile-username text-center">{{customer.name}}</h3>
+                  <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item" ng-repeat='detail in customer.details'>
+                      <div ng-show='detail.type!="ts"'>
+                        <b>{{detail.name}}:</b> <a class="pull-right">{{detail.value}}</a>
+                      </div>
+                      <div ng-show='detail.type=="ts"'>
+                        <b>{{detail.name}}:</b> <a class="pull-right">{{detail.value*1000 | date:'HH:mm dd-MM-yyyy'}}</a>
+                      </div>
+                    </li>
+                  </ul>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+
+              <!-- About Me Box -->
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">About</h3>
+                </div><!-- /.box-header -->
+                <div class="box-body">
+                  <ul class="list-group list-group-unbordered">
+                    <li class="list-group-item" ng-repeat='item in summary'>
+                      <div ng-show='item.type!="ts"'>
+                        <b>{{item.name}}:</b> <a class="pull-right">{{item.value}}</a>
+                      </div>
+                      <div ng-show='item.type=="ts"'>
+                        <b>{{item.name}}:</b> <a class="pull-right">{{item.value*1000 | date:'HH:mm dd-MM-yyyy'}}</a>
+                      </div>
+                    </li>
+                  </ul>
+                </div><!-- /.box-body -->
+              </div><!-- /.box -->
+            </div><!-- /.col -->
+            <div class="col-md-8">
+              <div class="nav-tabs-custom">
+                <ul class="nav nav-tabs"  ng-controller="TabsCtrl">
+                  <li ng-repeat="tab in tabs.customers" ng-class="{'active':isActiveTab(tab.url)}" ng-click="onClickTab(tab)" style="margin:2px;"><a data-toggle="tab">{{tab.title}}</a></li>
+                </ul>
+                <div class="tab-content">
+                  <div ng-include="currentTab"></div>
+                </div>
+              </div><!-- /.nav-tabs-custom -->
+            </div><!-- /.col -->
+          </div><!-- /.row -->
+
+        </section><!-- /.content -->
+</div>

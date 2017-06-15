@@ -1,0 +1,19 @@
+<div class='col-md-12 col-sm-12 col-xs-12' ng-controller="newdealorcouponCtrl" ng-init="init()" ng-cloak>
+  <ul class="breadcrumb" style="font-size:16px;">
+    <li ng-click="route('/dashboard')"><a>Home</a></li>
+    <li ng-click="route('/dlscpns')"><a>Deals/Coupons</a></li>
+    <li class="active">New Deal/Coupon</li>
+  </ul>
+</div>
+<div class='col-md-12 col-sm-12 col-xs-12' ng-controller="TabsCtrl">
+  <div class="x_panel">
+    <button class="btn btn-default" ng-repeat="tab in tabs.newdlorcpn" ng-class="{'btn-info':isActiveTab(tab.url)}" ng-click="onClickTab(tab)" style="margin:2px;">{{tab.title}}</button>
+  </div>
+</div>
+<div class="col-xs-12 col-sm-12 col-md-12">
+  <div class="panel panel-info col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="panel-body">
+      <div ng-include="currentTab"></div>
+    </div>
+  </div>
+</div>

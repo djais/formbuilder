@@ -1,0 +1,35 @@
+<div class="active tab-pane" id="activity" ng-controller='activitylogCtrl' ng-init='init()'>
+                    <!-- Post -->
+                    <div class="post">
+                      <!-- The time line -->
+                      <ul class="timeline">
+                        <!-- timeline time label -->
+                        <!-- <li class="time-label">
+                          <span class="bg-grey">
+                            Jan 2017
+                          </span>
+                        </li> -->
+                        <!-- /.timeline-label -->
+                        <!-- timeline item -->
+                        <li ng-repeat='activity in activities'>
+                          <i class="{{icons[activity.event]}}"></i>
+                          <div class="timeline-item" style="background-color:#f0f0f0;">
+                            <span class="time"><i class="fa fa-calendar"></i> {{activity.ts*1000 | date:"dd MMM yy HH:mm"}}</span>
+                            <h3 class="timeline-header">{{activity.msg}} <span ng-show='activity.loc'>@ <a>{{activity.loc}}</a></span></h3>
+                            <div class="timeline-body" style="background-color:#f0f0f0; min-height:30px;">
+                              <div>
+                                <div ng-repeat='item in activity.details'>
+                                  <span> {{item.name}} : </span> <span><b>{{item.value.toString()}}</b></span>
+                                </div>
+                              </div>
+                              <div style='height:12px;' ng-show='activity.hasDetail'>
+                                <a class="pull-right" ng-click='gotoDetail(activity,activity.event)'>Details</a>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                        <!-- END timeline item -->
+                        <!-- timeline item -->
+                      </ul>
+                    </div><!-- /.tab-pane -->
+                  </div><!-- /.tab-content -->

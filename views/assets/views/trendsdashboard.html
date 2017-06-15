@@ -1,0 +1,93 @@
+<div class="col-xs-12" ng-controller="dashboardCtrl" ng-init="init()" ng-cloak>
+
+  <div class='col-xs-12 panel panel-default' style="padding:15px 2px 15px 2px;">
+    <div class="col-xs-12 col-sm-4">
+              <div class="input-group">
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              {{filterby}}
+            </button>
+            <div class="dropdown-menu">
+              <li ng-repeat="filterby in filters.filterby" ng-click="setcriteria(filterby)"><a class="dropdown-item">{{filterby}}</a></li>
+            </div>
+          </div>
+          <input class='form-control' type='text' typeahead="state for state in states | filter:$viewValue | limitTo:8" typeahead-editable='false'/>
+          <div class="input-group-btn">
+            <button class="btn btn-info" type="submit"><i class="fa fa-filter"></i></button>
+          </div>
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-8" align="right">
+      <button class="btn btn-info"><i class="fa fa-download"></i> Export</button>
+      <button class="btn btn-info" ng-click="route('/advancefilterdb')"><i class="fa fa-filter"></i>Advance Filters</button>
+    </div>
+  </div>
+  <div class='col-md-6 col-sm-6 col-xs-12'>
+    <div class="x_panel tile fixed_height_380 overflow_hidden">
+      <div class="x_title">
+        <label>Top Concern : Services(2.7%)</label>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <canvas id="base" class="chart-line" chart-data="concernList" chart-labels="labels" chart-colors="colors" chart-dataset-override="datasetOverride1" ></canvas> 
+      </div>
+    </div>
+  </div>
+
+    <div class='col-md-6 col-sm-6 col-xs-12'>
+    <div class="x_panel tile fixed_height_380 overflow_hidden">
+      <div class="x_title">
+        <label>Satisfaction Index : 3.8</label>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <canvas id="base" class="chart-line" chart-data="satisfactionList" chart-labels="labels" chart-colors="colors" chart-dataset-override="datasetOverride2" ></canvas> 
+      </div>
+    </div>
+  </div>
+  <div class='col-md-6 col-sm-6 col-xs-12'>
+    <div class="x_panel tile fixed_height_380 overflow_hidden">
+      <div class="x_title">
+        <label>Feedbacks Collected : 1357</label>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+<canvas id="base" class="chart-line" chart-data="feedbackList" chart-labels="labels" chart-colors="colors" chart-dataset-override="datasetOverride3" ></canvas> 
+      </div>
+    </div>
+  </div>
+  <div class='col-md-6 col-sm-6 col-xs-12'>
+    <div class="x_panel tile fixed_height_380 overflow_hidden">
+      <div class="x_title">
+        <label>Customer Data : 1150</label>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+<canvas id="base" class="chart-line" chart-data="custList" chart-labels="labels" chart-colors="colors" chart-dataset-override="datasetOverride" ></canvas> 
+      </div>
+    </div>
+  </div>
+  <div class='col-md-6 col-sm-6 col-xs-12'>
+    <div class="x_panel tile fixed_height_380 overflow_hidden">
+      <div class="x_title">
+        <label>NPS : 27</label>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+<canvas id="base" class="chart-line" chart-data="npsList" chart-labels="labels" chart-colors="colors" chart-dataset-override="datasetOverride" ></canvas> 
+      </div>
+    </div>
+  </div>
+  <div class='col-md-6 col-sm-6 col-xs-12'>
+    <div class="x_panel tile fixed_height_380 overflow_hidden">
+      <div class="x_title">
+        <label>Customer Walkins : 1470</label>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+<canvas id="base" class="chart-line" chart-data="walkinList" chart-labels="labels" chart-colors="colors" chart-dataset-override="datasetOverride" ></canvas> 
+      </div>
+    </div>
+  </div>
+
+</div>

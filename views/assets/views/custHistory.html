@@ -1,0 +1,25 @@
+      <div ng-controller="custdtlsCtrl">
+        <div class="panel-body">
+          <table class="table table-hover" style="font-size:14px;">
+            <div class="th "style="font-size:16px;">Overall Details</div>
+              <tr><td>Average Rating :</td> 
+            <td>{{selected.meta.avgRating}}</td> </tr>
+              <tr><td>Total Interactions :</td>
+            <td>{{selected.meta.total_interactions}}</td> </tr>
+          </table>
+        </div>
+        <div class="panel-body">
+          <div class="th "style="font-size:16px;">Interaction Details</div>
+          <table ng-repeat="interaction in selected.interactions" class="table table-hover" style="font-size:14px;">
+            <tr><td>Source :</td> 
+            <td>{{interaction.Source}}</td> </tr>
+            <tr><td>Date :</td> 
+            <td>{{interaction.date}}</td> </tr>
+            <tr><td>Location :</td>
+            <td>{{interaction.Location}}</td> </tr>
+            <tr><td>Interaction Detail :</td> 
+            <td>{{interaction.Detail}}</td> </tr>
+          </table>
+        </div>  
+      </div>
+        

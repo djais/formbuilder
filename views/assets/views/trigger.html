@@ -1,0 +1,42 @@
+<div classs="container">
+  <div class="x_panel tile">
+    <div class="col-xs-12" ng-controller="triggerCtrl" ng-init="init()" ng-cloak>
+      <button  class="btn btn-info pull-right" style="margin-top:5px" ng-show="!newtrigger" ng-click="addoredittrigg({},'newtrigger')"><i class="fa fa-plus"></i>Add Trigger</button>
+      <div class="row" ng-show="newtrigger">
+        <div class='col-md-8 col-md-offset-2 col-sm-12 col-xs-12'>
+          <div ng-include="currentTab1"></div>
+        </div>
+      </div>
+      <div class="row" ng-show="!newtrigger">
+        <div class='col-md-12 col-sm-12 col-xs-12'>
+          <div class="x_content">
+            <table ng-show="rytapi.items.length" class="table table-hover" style="width:100%">
+              <thead>
+                <tr>
+                 <th>Status</th>
+                 <th>Location Name</th>
+                 <th>Event</th>
+                 <th></th>
+                 <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr ng-repeat="trigger in rytapi.items" style='cursor:pointer;'>
+                  <td ng-show="trigger.active==true" ng-click="changetabview(trigger,'trigger')">Active</td>
+                  <td ng-show="trigger.active==false" ng-click="changetabview(trigger,'trigger')">Inactive</td>
+                  <td ng-click="changetabview(trigger,'trigger')">{{trigger.displayloc}} </td>
+                  <td ng-click="changetabview(trigger,'trigger')">{{trigger.eventdtls.fename}}</td>
+                  <td ng-click="addoredittrigg(trigger,'edittrigger')" ><i uib-popover="Edit Trigger" popover-trigger="'mouseenter'" class="fa fa-pencil"></i></td>
+                  <td ng-click="removetrig(trigger,'table')" ><i uib-popover="Delete Trigger" popover-trigger="'mouseenter'"  class="fa fa-trash"></i></td>
+                </tr>
+              </tbody>
+            </table>
+            <div ng-show="!rytapi.items.length" class="col-xs-12" align="center">
+              <label class="text-muted">You have no triggers to show</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

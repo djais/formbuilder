@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="dashboard">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Dashboard</title>
+    <link rel="shortcut icon" type="image/x-icon" href="Favicon.ico" />
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/assets/app/lib/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/app/lib/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/app/lib/dist/css/AdminLTE.css">
+    <link rel="stylesheet" href="/assets/app/lib/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="/assets/app/css/custom.css">
+    <script src="/assets/app/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+    <script src="/assets/lib/js/angular.min.js"></script>
+  </head>
+  <body class="hold-transition skin-black-light sidebar-mini" ng-controller="appCtrl" style="color:#73879C" ng-init='init()' ng-cloak>
+    <div class="wrapper">
+
+      <header class="main-header">
+        <a href="#" class="logo">
+          <span class="logo-mini"><img src="/assets/app/img/minilogo.png" style='height:20px;'></span>
+          <span class="logo-lg"><img src="/assets/app/img/rytlogo.png" style='height:20px;'></span>
+        </a>
+        <nav class="navbar navbar-static-top" role="navigation">
+          <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button"></a>
+          <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+              <li class="dropdown notifications-menu">
+                <a class='dropdown-toggle'>
+                   {{user.name}}
+                </a>
+              </li>
+              <li class="dropdown notifications-menu">
+                <a href='/login/logout'>
+                  <i class="fa fa-sign-out" ></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </header>
+      <aside class="main-sidebar" ng-controller="sideBarCtrl" ng-cloak style="font-size:13px; padding-top:50px;">
+        <section class="sidebar">
+          <ul class="sidebar-menu" ng-repeat="content in sidebarcontents.main">
+              <li class="header">{{content.title}}</li>
+              <li ng-repeat="item in content.contents" ng-class="{'active':sidebaractive==item.url}">
+                <a ng-click="route(item.url)">
+                  <i ng-class="item.icon"></i>
+                  <span>{{item.title}}</span>
+                </a>
+              </li>
+          </ul>
+        </section>
+      </aside>
+        <div class="content-wrapper row">
+
+              <ng-view style="padding:15px;">
+                <h2 style='color:#bbbbbb; text-align:center'><i class='fa fa-circle-o-notch fa-spin'></i> Loading<h2>
+              </ng-view>
+
+          </div>
+        </div> <!-- ~ .app -->
+        <div ui-yield-to="modals"></div>
+        </div>
+      </div><!-- ./wrapper -->
+    </body>
+    <script src="/assets/lib/js/FileSaver.min.js"></script>
+    <script src="/assets/app/lib/angular-route.min.js"></script>
+    <script src="/assets/app/lib/socket.io-1.0.4.js"></script>
+    <script src="/assets/app/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/app/lib/dist/js/app.min.js"></script>
+    <script src="/assets/app/lib/chart.js/dist/Chart.min.js"></script>
+    <script src="/assets/app/lib/ng-infinite-scroll.min.js"></script>
+    <script src="/assets/app/lib/angular-chart.js/dist/angular-chart.min.js"></script>
+    <script src="/assets/app/lib/ui-bootstrap-custom-0.13.4.min.js"></script>
+    <script src="/assets/app/lib/ui-bootstrap-custom-tpls-0.13.4.min.js"></script>
+    <script src="/assets/app/js/appCtrl.js"></script>
+    
+</html>

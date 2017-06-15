@@ -1,0 +1,81 @@
+<div class="col-xs-12" ng-controller="fbdtlsCtrl" ng-init="init()" ng-cloak>
+  <div class='col-md-12 col-sm-12 col-xs-12'>
+    <ul class="breadcrumb" style="font-size:16px;">
+      <li ng-click="route('/dashboard')"><a>Home</a></li>
+      <li ng-click="route('/feedbacks')"><a>Feedbacks</a></li>
+      <li class="active">Feedback Details</li>
+    </ul>
+  </div>
+
+  <div class='col-md-12 col-sm-12 col-xs-12' ng-controller="TabsCtrl">
+    <div class="x_panel">
+      <button class="btn btn-default" ng-repeat="tab in tabs.feedbacks" ng-class="{'btn-info':isActiveTab(tab.url)}" ng-click="onClickTab(tab)" style="margin:2px;">{{tab.title}}</button>
+    </div>
+  </div>
+
+  <div class="panel panel-info col-xs-12 col-sm-12 col-md-5">
+    <div class="panel-body" ng-init="details(selected.feedback)">
+      <table class="table table-hover" style="font-size:14px;">
+        <div class="th" style="font-size:16px;">Form Details</div>
+        <tr><td>NPS Score :</td> 
+    <td>{{selected.feedback.npsScore}}</td> </tr>
+      <tr><td>Rating :</td>
+    <td>{{selected.feedback.rating}}</td> </tr>
+      <tr><td>Service :</td>
+    <td>{{selected.feedback.service}}</td> </tr>
+       <tr><td>Facilities :</td>
+    <td>{{selected.feedback.facilities}}</td> </tr>
+     <tr><td>Staff :</td>
+    <td>{{selected.feedback.staff}}</td> </tr>
+      <tr><td>Comments :</td>
+    <td>{{selected.feedback.comment}}</td> </tr>
+      </table>
+    </div>
+    
+    <div class="panel-body">
+      <table class="table table-hover" style="font-size:14px;">
+        <div class="th" style="font-size:16px;">Other Details</div>
+        <tr><td>Source :</td>
+    <td>{{selected.derived.source}}</td> </tr>
+      <tr><td>Key Parameter :</td>
+    <td>{{selected.derived.keyParam}}</td> </tr>
+      <tr><td>Sentiment :</td>
+    <td>{{selected.derived.sentiment}}</td> </tr>
+       <tr><td>Ticket :</td>
+    <td>{{selected.derived.ticket}}</td> </tr>
+     <tr><td>Concerns :</td>
+    <td>{{selected.derived.concerns}}</td> </tr>
+      <tr><td>Location :</td>
+    <td>{{selected.derived.location}}</td> </tr>
+     <tr><td>Time :</td>
+    <td>{{selected.derived.time}}</td> </tr>
+      <tr><td>Date :</td>
+    <td>{{selected.derived.date}}</td> </tr>
+      </table>
+    </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-7">
+    <div class="panel panel-info col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-controller="TabsCtrl">
+      <div class="panel-body">
+        <div ng-include="currentTab"></div>
+      </div>
+    </div>
+    <div class="panel panel-info col-xs-12">
+      <div class="panel-body">
+        <table class="table table-hover" style="font-size:14px;">
+          <div class="th" style="font-size:16px;">Customer Details</div>
+          <tr><td>name :</td>
+          <td>{{selected.customer.name}}</td> </tr>
+            <tr><td>phone :</td>
+          <td>{{selected.customer.phone}}</td> </tr>
+            <tr><td>email :</td>
+          <td>{{selected.customer.email}}</td> </tr>
+             <tr><td>gender :</td>
+          <td>{{selected.customer.gender}}</td> </tr>
+           <tr><td>age_group :</td>
+          <td>{{selected.customer.age_group}}</td> </tr>
+        </table>
+      </div>
+    </div>
+  </div>  
+</div>

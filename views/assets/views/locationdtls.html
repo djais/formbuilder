@@ -1,0 +1,31 @@
+<div class="col-xs-12" ng-controller="locationsCtrl" ng-cloak>
+  <div ng-show="!editlocation">
+    <div class='col-md-12 col-sm-12 col-xs-12' style="padding-left:0px;">
+      <ul class="breadcrumb" style="font-size:16px;">
+        <li ng-click="route('/dashboard')"><a>Home</a></li>
+        <li ng-click="route('/locations')"><a>Locations</a></li>
+        <li class="active">Location Details</li>
+      </ul>
+    </div>
+
+    <div class="col-xs-12 col-sm-12 col-md-5">
+      <div class="box box-primary" style="padding:10px;">
+        <table class="table table-hover" style="font-size:14px;">
+          <div class="th" style="font-size:16px;">Location Details</div>
+          <tr ng-repeat="(key, value) in selected">
+            <td> {{key}} </td> <td> {{ value }} </td>
+          </tr>
+        </table> 
+        <div align="right">
+          <button class="btn btn-default" ng-click="removeloc(selected,'edit')">Remove</button>
+          <button class="btn btn-info" ng-click="addoreditloc(selected,'editlocation')">Edit</button>
+        </div>     
+      </div>
+    </div>
+  </div>
+  <div class="row" ng-show="editlocation">
+    <div class='col-md-8 col-md-offset-2 col-sm-12 col-xs-12'>
+      <div ng-include="currentTab"></div>
+    </div>
+  </div>
+</div>
