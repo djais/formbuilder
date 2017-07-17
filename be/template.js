@@ -19,6 +19,7 @@ router.get('/getfordash', getfordash);
 router.get('/getconcerns', getconcerns);
 router.post('/getconcernsforapp', getconcernsforapp);
 router.post('/post',post);
+router.post('/createfb',createfb);
 
 //version : get the current version of the app
 function get(req, res){
@@ -182,5 +183,11 @@ function cmpltpost(query,update,res){
   })
 }
 
+// function for creating form builder;createfb() begin
+function createfb(req,res){
+  console.log("create fb called");
+}
+
+// createfb(); end
 
 module.exports = router;

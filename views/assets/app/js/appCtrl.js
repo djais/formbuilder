@@ -2605,7 +2605,7 @@ app.controller('formbuildCtrl',function($rootScope,$scope,$http,$sce){
   $scope.trustedContent = $sce.trustAsHtml($rootScope.data.url);
 
 
-$scope.save = function(){
+$scope.Add = function(){
 // console.log("questionname:",$scope.question,"head:",$scope.Qname,"DTsmiley:" )
 // $scope.addques = true;
 $scope.obj={};
@@ -2638,7 +2638,11 @@ console.log($scope.questionlist);
  // $scope.clearfield();
 
 }
-
+$scope.save=function(){
+   var postd={"someting":"data"}
+ var url = $rootScope.server+"/template/createfb";
+ $http.post(url,postd);
+}
 $scope.clearfield = function(){
 
 // $scope.userForm.$setPristine();
