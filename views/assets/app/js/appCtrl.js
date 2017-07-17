@@ -28,7 +28,7 @@ app.config(function($routeProvider) {
   $routeProvider.when('/dlcpndtls',         {templateUrl: 'assets/views/dealsorcoupondtls.html', reloadOnSearch: false});
   $routeProvider.when('/feedbacks',         {templateUrl: 'assets/views/feedback.html', reloadOnSearch: false});
   $routeProvider.when('/fbdtls',            {templateUrl: 'assets/views/fbdtls.html', reloadOnSearch: false});
-  $routeProvider.when('/formbuilder',       {templateUrl: 'assets/views/formbuilder.html', reloadOnSearch: false});
+  $routeProvider.when('/formbuilder',       {templateUrl: 'assets/views/buildform.html', reloadOnSearch: false});
   $routeProvider.when('/insideapp',         {templateUrl: 'assets/views/insideapp.html', reloadOnSearch: false});
   $routeProvider.when('/settings',          {templateUrl: 'assets/views/settings.html', reloadOnSearch: false});
   $routeProvider.when('/locations',         {templateUrl: 'assets/views/locations.html', reloadOnSearch: false});
@@ -40,6 +40,11 @@ app.config(function($routeProvider) {
   $routeProvider.when('/newcatalogormenu',  {templateUrl: 'assets/views/newcatalogormenu.html', reloadOnSearch: false});
   $routeProvider.when('/users',             {templateUrl: 'assets/views/users.html', reloadOnSearch: false});
   $routeProvider.when('/uploadexcel',       {templateUrl: 'assets/views/uploadexcel.html', reloadOnSearch: false});
+  // $routeProvider.when('/addform',         {templateUrl: 'assets/views/buildform.html', reloadOnSearch: false});
+  $routeProvider.when('/preview',           {templateUrl: 'assets/views/previewform.html', reloadOnSearch: false});
+
+
+
 });
 
 // ----------FACTORY definition for infinite scroll function--
@@ -219,7 +224,7 @@ app.directive('disallowSpaces', function() {
 //disallow space directive
 app.filter('unique', function() {
    return function(collection, keyname) {
-      var output = [], 
+      var output = [],
           keys = [];
 
       angular.forEach(collection, function(item) {
@@ -411,7 +416,7 @@ app.controller('feedbackCtrl',function($rootScope,$scope,$location, $http, Rytap
       myDate1=myDate1.split("-");
       var newDate1=myDate1[1]+"/"+myDate1[2]+"/"+myDate1[0];
       $scope.filter.fromts = new Date(newDate1).getTime()/1000;
-      delete $scope.filter.fromdate;  
+      delete $scope.filter.fromdate;
     }
     if($scope.filter.todate){
       var myDate2=$scope.filter.todate;
@@ -434,7 +439,7 @@ app.controller('feedbackCtrl',function($rootScope,$scope,$location, $http, Rytap
       myDate1=myDate1.split("-");
       var newDate1=myDate1[1]+"/"+myDate1[2]+"/"+myDate1[0];
       $scope.filter.fromts = new Date(newDate1).getTime()/1000;
-      delete $scope.filter.fromdate;  
+      delete $scope.filter.fromdate;
     }
     if($scope.filter.todate){
       var myDate2=$scope.filter.todate;
@@ -490,17 +495,17 @@ app.controller('dashboardCtrl',function($rootScope,$scope,$location, $http){
 
  $rootScope.toggle = true;
 
-    
+
     $scope.$watch('toggle', function(){
         $scope.toggledash = $scope.toggle ? 'Number' : 'Chart';
     })
 
-    
+
   // $scope.trendlabels = [1485887400,1485973800,1486060200,1486146600,1486233000];
   $scope.series = ['Series A'];
-  // $scope.trenddata = 
+  // $scope.trenddata =
   //   [4, 4.8, 4.8, 3.8, 3.9];
- 
+
   $scope.onClick = function (points, evt) {
     console.log(points, evt);
   };
@@ -521,18 +526,18 @@ app.controller('dashboardCtrl',function($rootScope,$scope,$location, $http){
 
 
     $scope.feedback={
-                       
-                        
+
+
                         "colours":['#f7464a', '#549c2f']
 
 
 
                     }
- 
-    
+
+
      $scope.customer={
                         "labels":["New", "Repeat"],
-                        
+
                         "colours":['#72C02C', '#3498DB', '#717984', '#F1C40F']
 
 
@@ -540,7 +545,7 @@ app.controller('dashboardCtrl',function($rootScope,$scope,$location, $http){
                     }
      $scope.visit={
                         "labels":["New", "Repeat"],
-                        
+
                         "colours":['#72C02C', '#3498DB', '#717984', '#F1C40F']
 
 
@@ -548,7 +553,7 @@ app.controller('dashboardCtrl',function($rootScope,$scope,$location, $http){
                     }
        $scope.wifi={
                         "labels":["New", "Repeat"],
-                        
+
                         "colours":['#72C02C', '#3498DB', '#717984', '#F1C40F']
 
 
@@ -567,18 +572,18 @@ app.controller('dashboardCtrl',function($rootScope,$scope,$location, $http){
                         animation: false,
                         showAllTooltips:true
 
-                        
 
 
-                       
+
+
 
                                 };
      $scope.loc_feedback= {
         "labels" : ["kolkata", "Bangalore","Chennai","Delhi","Pune","Mysore"],
       "data":[50,100,200,300,75,50]
       };
-     
-  
+
+
     $scope.colours = ['#46BFBD', '#FDB45C', '#949FB1', '#3498DB', '#717984', '#F1C40F']
     console.log("summary.positive")
     // $scope.data= [372,125];
@@ -621,7 +626,7 @@ app.controller('dashboardCtrl',function($rootScope,$scope,$location, $http){
     if($scope.filter.loc)
       var loc = $scope.filter.loc;
     if(gt&&lt&&(gt>lt)){
-      $scope.tserror = "Please check the dates"; 
+      $scope.tserror = "Please check the dates";
       gt = "";
       lt = "";
       $scope.filter = {};
@@ -668,20 +673,20 @@ app.controller('dashboardCtrl',function($rootScope,$scope,$location, $http){
 		  var j = i;
 		else
 		 var j = $scope.j;
-		
+
 		$scope.j++;
 		$scope.feedback.data[j]=$scope.summary.graphdata[i];
 		$scope.feedback.labels[j]=$scope.summary.graphlabels[i];
 		}
         }
- 
+
 console.log($scope.feedback);
       }
     })
     .error(function(e){
       console.log('error', e)
     });//error
-    
+
     $http.get($rootScope.server+"/feedback/source"+query)
       .success(function(sdata,status){
         if(sdata.statusCode==200)
@@ -693,7 +698,7 @@ console.log($scope.feedback);
         $scope.source = '-';
         console.log('error', e)
       });//error
-    
+
     $http.get($rootScope.server+"/feedback/rating"+query)
     .success(function(d2,status){
       if(d2.statusCode==200)
@@ -705,7 +710,7 @@ console.log($scope.feedback);
       $scope.rating = {net:0, rating:0};
       console.log('error', e)
     });//error
-    
+
     $http.get($rootScope.server+"/feedback/nps"+query)
     .success(function(d3,status){
       if(d3.statusCode==200)
@@ -739,7 +744,7 @@ console.log($scope.feedback);
       $scope.visits = {total:0, new:0, repeat:0};
       console.log('error', e)
     });//error
-  
+
     //api for customers
     $http.get($rootScope.server+"/customer/summary"+query)
     .success(function(d5,status){
@@ -754,7 +759,7 @@ console.log($scope.feedback);
         $scope.customer.labels=[];
          $scope.customer.labels=$scope.customers.graphlabels;
 
-       
+
       }
       else
         $scope.customers = {total:0, new:0, repeat:0};
@@ -763,7 +768,7 @@ console.log($scope.feedback);
       $scope.customers = {total:0, new:0, repeat:0};
       console.log('error', e)
     });//error
-    
+
     //devices
     $http.get($rootScope.server+"/device/summary")
     .success(function(d6,status){
@@ -925,7 +930,7 @@ console.log($scope.feedback);
 //     if($scope.filter.loc)
 //       var loc = $scope.filter.loc;
 //     if(gt&&lt&&(gt>lt)){
-//       $scope.tserror = "Please check the dates"; 
+//       $scope.tserror = "Please check the dates";
 //       gt = "";
 //       lt = "";
 //       $scope.filter = {};
@@ -1108,7 +1113,7 @@ app.controller('customerCtrl',function($rootScope,$scope,$location, $http, Rytap
       myDate1=myDate1.split("-");
       var newDate1=myDate1[1]+"/"+myDate1[2]+"/"+myDate1[0];
       $scope.filter.fromts = new Date(newDate1).getTime()/1000;
-      delete $scope.filter.fromdate;  
+      delete $scope.filter.fromdate;
     }
     if($scope.filter.todate){
       var myDate2=$scope.filter.todate;
@@ -1131,7 +1136,7 @@ app.controller('customerCtrl',function($rootScope,$scope,$location, $http, Rytap
       myDate1=myDate1.split("-");
       var newDate1=myDate1[1]+"/"+myDate1[2]+"/"+myDate1[0];
       $scope.filter.fromts = new Date(newDate1).getTime()/1000;
-      delete $scope.filter.fromdate;  
+      delete $scope.filter.fromdate;
     }
     if($scope.filter.todate){
       var myDate2=$scope.filter.todate;
@@ -1355,14 +1360,14 @@ app.controller('TabsCtrl', function ($scope,$rootScope) {
      "formbuilder":[
     {
         title: 'Form Builder',
-        url: 'assets/views/feedbackform.html'
+        url: 'assets/views/feedbackform1.html'
       }
       // {
       //   title: 'Profile',
       //   url: 'assets/views/profile.html'
       // },
-      
-      
+
+
     ],
     "customers":[
       // {
@@ -1898,6 +1903,249 @@ app.controller('advancefilterfbCtrl', function ($scope,$rootScope) {
 
 });
 
+app.controller('previewFormCtrl',function($rootScope,$scope){
+
+  $scope.newField = {};
+  $scope.fields = [{
+
+    type: 'text',
+    que: ''
+
+  }];
+
+
+})
+
+app.controller('FbController', function ($rootScope, $scope, $http, $location) {
+
+
+        $rootScope.fbparameters = [
+      {
+        "head": "rating",
+        "type": "rating",
+        "name": "rating",
+        "visible": false,
+        "dependsonparam": "",
+        "dependsonval": "",
+        "required": true,
+        "val": 0,
+        "desc": [],
+        "que": "Please rate at a scale of 1-5.",
+        "options": [1, 2, 3, 4, 5],
+        "concernoptions": []
+      }, {
+        "head": "npsRating",
+        "type": "nps",
+        "name": "npsRating",
+        "visible": true,
+        "dependsonparam": "",
+        "dependsonval": "",
+        "required": true,
+        "val": -1,
+        "desc": [],
+        "que": "How likely you Recommend to others.",
+        "options": [1, 2, 3, 4, 5],
+        "concernoptions": []
+      }, {
+        "head": "House-Keeping",
+        "type": "colorSmileyRadio",
+        "name": "House-Keeping",
+        "visible": true,
+        "dependsonparam": "",
+        "dependsonval": "",
+        "required": false,
+        "val": "",
+        "desc": [],
+        "que": "House-Keeping",
+        "options": [1, 2, 3, 4, 5],
+        "concernoptions": []
+      },{
+    "head": "lighting",
+    "type": "yesno",
+    "name": "Proper lighting",
+    "visible": true,
+    "dependsonparam": "",
+    "dependsonval": "",
+    "required": false,
+    "val": "",
+    "desc": [],
+    "que": "Was the washroom properly lighted?",
+    "options": ["Yes", "No"],
+    "concernoptions": ["No"]
+  },
+      {
+        "head": "hygiene",
+        "type": "colorSmileyRadio",
+        "name": "Hygiene",
+        "visible": true,
+        "dependsonparam": "",
+        "dependsonval": "",
+        "required": false,
+        "val": "",
+        "desc": [],
+        "que": "Hygiene",
+        "options": ["Poor", "Average", "Good", "Very Good", "Excellent"],
+        "concernoptions": ["Average", "Poor"]
+      },
+      {
+        "head": "vists",
+        "type": "radio",
+        "name": "vists",
+        "visible": true,
+        "dependsonparam": "",
+        "dependsonval": "",
+        "required": false,
+        "val": "",
+        "desc": [],
+        "que": "Is this your First vist? ",
+        "options": ['Yes','No'],
+        "concernoptions": []
+      },
+      {
+        "head": "visit_frequency",
+        "type": "radio",
+        "name": "Visit Frequency",
+        "visible": true,
+        "dependsonparam": "vists",
+        "dependsonval": "No",
+        "required": false,
+        "val": "",
+        "desc": [],
+        "que": "How often do you visit?",
+        "options": ["Frequently", "Occasionally", "Rarely", "First Time"],
+        "concernoptions": []
+      },
+        {
+        "head": "like_most",
+        "type": "shorttext",
+        "name": "Like Most",
+        "visible": true,
+        "dependsonparam": "",
+        "dependsonval": "",
+        "required": false,
+        "val": "",
+        "desc": [],
+        "que": "What do you like most?",
+        "options": [],
+        "concernoptions": []
+      }, {
+        "head": "suggestions",
+        "type": "longtext",
+        "name": "Suggestions",
+        "visible": true,
+        "dependsonparam": "",
+        "dependsonval": "",
+        "required": false,
+        "val": "",
+        "desc": [],
+        "que": "Suggestions",
+        "options": [],
+        "concernoptions": []
+      },
+      {
+        "head": "liked",
+        "type": "likedislike",
+        "name": "likedislike",
+        "visible": true,
+        "dependsonparam": "",
+        "dependsonval": "",
+        "required": false,
+        "val": "",
+        "desc": [],
+        "que": "Liked our Shops ?",
+        "options": ['Yes','No'],
+        "concernoptions": []
+      },
+      {
+        "head": "multidrop",
+        "type": "checkbox",
+        "name": "multidrop",
+        "visible": true,
+        "dependsonparam": "liked",
+        "dependsonval": "yes",
+        "required": false,
+        "val": "",
+        "desc": [],
+        "que": "Tell us,what you likes? ",
+        "options": [' Fashion', 'Beauty, Health, Grocery', 'Books','Sports, Fitness, Bags','Movies & Music'],
+        "concernoptions": []
+      },
+      {
+        "head": "refer",
+        "type": "refer",
+        "name": "Refer a Friend",
+        "visible": true,
+        "dependsonparam": "",
+        "dependsonval": "",
+        "required": false,
+        "scale": "",
+        "val": "",
+        "desc": [],
+        "que": "Please refer some of your friends to us",
+        "options": [{
+          "name": "",
+          "phone": ""
+        }],
+        "concernoptions": []
+      },
+    ];
+
+    $scope.setVal = function (index, val) {
+      console.log(index)
+      console.log(val)
+      if ($rootScope.fbparameters[index].type == 'num') {
+        $rootScope.fbparameters[index].val = parseInt(val);
+      }
+      else {
+        $rootScope.fbparameters[index].val = val;
+      }
+      $rootScope.fbparameters[index].answered = true;
+      $rootScope.pleasefill = false;
+    }// end setVal
+
+
+    $scope.isVal = function (index, val) {
+      console.log(index, val)
+      if ($rootScope.fbparameters[index].val == val)
+        return true;
+      return false;
+    }
+
+
+
+  $scope.shouldihide = function (index) {
+    if ($rootScope.fbparameters[index].dependsonparam) {
+      for (var i = 0; i < $rootScope.fbparameters.length; i++) {
+        if ($rootScope.fbparameters[i].head == $rootScope.fbparameters[index].dependsonparam && $rootScope.fbparameters[i].val != $rootScope.fbparameters[index].dependsonval) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  $scope.allfilled = function () {
+    for (var i = 0; i < $rootScope.fbparameters.length; i++) {
+      if ($rootScope.fbparameters[i].required && !$rootScope.fbparameters[i].answered) {
+        var notready = true;
+        $scope.tobefilled = $rootScope.fbparameters[i].head;
+        break;
+      }
+    }
+    if (notready)
+      return false;
+    // else{
+    //   if(!$rootScope.agree.val){
+    //     $scope.tobefilled = 'agree';
+    //     return false
+    //   }
+    else {
+      $scope.tobefilled = '';
+      return true;
+    }
+  }
+
+});
 //////////////// locationsCtrl ///////////////////////////////////////////////////
 
 app.controller('locationsCtrl',function($rootScope,$scope,$location,$http,Rytapi){
@@ -1920,7 +2168,7 @@ app.controller('locationsCtrl',function($rootScope,$scope,$location,$http,Rytapi
       //   $scope.message = {"statusCode":200,"message":"Location update succesfull."}
       // }
       // else{
-      //   $scope.message = {"statusCode":502,"message":"Oops! Failed to updated location. Please retry!"}  
+      //   $scope.message = {"statusCode":502,"message":"Oops! Failed to updated location. Please retry!"}
       // }
       switch(from){
         case "table":
@@ -1934,7 +2182,7 @@ app.controller('locationsCtrl',function($rootScope,$scope,$location,$http,Rytapi
     .error(function(e){
       console.log("addoreditlocation failed")
       console.log('error', e)
-      // $scope.message = {"statusCode":502,"message":"Oops! Failed to update password. Please retry!"}  
+      // $scope.message = {"statusCode":502,"message":"Oops! Failed to update password. Please retry!"}
       $scope.init();
     });
   }
@@ -1975,7 +2223,7 @@ app.controller('locationsCtrl',function($rootScope,$scope,$location,$http,Rytapi
     if(fntype=="newlocation"){
       $scope.location["displayname"] = $scope.location.name;
       $scope.location.name = $scope.location.name.toLowerCase().replace(/[^0-9a-z]/gi, '');
-      $scope.location.name = $scope.location.name.split(' ').join('');      
+      $scope.location.name = $scope.location.name.split(' ').join('');
     }
     console.log($scope.location)
     $http.post(url,$scope.location)
@@ -1985,7 +2233,7 @@ app.controller('locationsCtrl',function($rootScope,$scope,$location,$http,Rytapi
         $scope.message = {"statusCode":200,"message":"Location update succesfull."}
       }
       else{
-        $scope.message = {"statusCode":502,"message":"Oops! Failed to update location. Please retry!"}  
+        $scope.message = {"statusCode":502,"message":"Oops! Failed to update location. Please retry!"}
       }
       $scope[fntype] = false;
       $scope.init();
@@ -1993,7 +2241,7 @@ app.controller('locationsCtrl',function($rootScope,$scope,$location,$http,Rytapi
     .error(function(e){
       console.log("addoreditlocation failed")
       console.log('error', e)
-      $scope.message = {"statusCode":502,"message":"Oops! Failed to update password. Please retry!"}  
+      $scope.message = {"statusCode":502,"message":"Oops! Failed to update password. Please retry!"}
       $scope[fntype] = false;
       $location.path(loc)
     });
@@ -2016,10 +2264,10 @@ app.controller('locationsCtrl',function($rootScope,$scope,$location,$http,Rytapi
 
 
 app.controller('changepasswordCtrl',function($rootScope,$scope,$location,$http){
-  
+
   $scope.init = function(){
     $scope.change={};
-    $scope.message = {"bgcolor":"danger","message":"Oops! Failed to update password. Please retry!"}  
+    $scope.message = {"bgcolor":"danger","message":"Oops! Failed to update password. Please retry!"}
   }
 
   $scope.check=function(){
@@ -2044,13 +2292,13 @@ app.controller('changepasswordCtrl',function($rootScope,$scope,$location,$http){
         $scope.message = {"statusCode":200,"message":"Password updated successfully"}
       }
       else{
-        $scope.message = {"statusCode":502,"message":"Oops! Failed to update password. Please retry!"}  
+        $scope.message = {"statusCode":502,"message":"Oops! Failed to update password. Please retry!"}
       }
     })
     .error(function(e){
       console.log("changepassword failed")
       console.log('error', e)
-      $scope.message = {"statusCode":502,"message":"Oops! Failed to update password. Please retry!"}  
+      $scope.message = {"statusCode":502,"message":"Oops! Failed to update password. Please retry!"}
     });//error
   }
 
@@ -2090,11 +2338,11 @@ app.controller("triggerCtrl", function($scope,$window,$http,$location,$rootScope
       $rootScope.trigger["email"] = [];
     for(var i=0; i < $window.phonearr.length; i++){
       if($window.phonearr[i])
-        $rootScope.trigger["sms"].push(parseInt($window.phonearr[i]));  
+        $rootScope.trigger["sms"].push(parseInt($window.phonearr[i]));
     }
     for(var j=0; j < $window.emailarr.length; j++){
       if($window.emailarr[j])
-        $rootScope.trigger["email"].push($window.emailarr[j]);  
+        $rootScope.trigger["email"].push($window.emailarr[j]);
     }
     if(fntype=="addtrigger" && $rootScope.trigger.loc){
       $rootScope.trigger.displayloc = $rootScope.trigger.loc.displayname;
@@ -2113,7 +2361,7 @@ app.controller("triggerCtrl", function($scope,$window,$http,$location,$rootScope
         $scope.message = {"statusCode":200,"message":"Location update succesfull."}
       }
       else{
-        $scope.message = {"statusCode":502,"message":"Oops! Failed to update trigger. Please retry!"}  
+        $scope.message = {"statusCode":502,"message":"Oops! Failed to update trigger. Please retry!"}
       }
       $scope[fntype] = false;
       $rootScope.currentTab = "assets/views/trigger.html";
@@ -2121,7 +2369,7 @@ app.controller("triggerCtrl", function($scope,$window,$http,$location,$rootScope
     .error(function(e){
       console.log("addoredittrigger failed")
       console.log('error', e)
-      $scope.message = {"statusCode":502,"message":"Oops! Failed to update trigger. Please retry!"}  
+      $scope.message = {"statusCode":502,"message":"Oops! Failed to update trigger. Please retry!"}
       $scope[fntype] = false;
       $rootScope.currentTab = "assets/views/trigger.html";
     });
@@ -2145,7 +2393,7 @@ app.controller("triggerCtrl", function($scope,$window,$http,$location,$rootScope
       //   $scope.message = {"statusCode":200,"message":"Location update succesfull."}
       // }
       // else{
-      //   $scope.message = {"statusCode":502,"message":"Oops! Failed to update trigger. Please retry!"}  
+      //   $scope.message = {"statusCode":502,"message":"Oops! Failed to update trigger. Please retry!"}
       // }
       switch(from){
         case "table":
@@ -2161,7 +2409,7 @@ app.controller("triggerCtrl", function($scope,$window,$http,$location,$rootScope
     .error(function(e){
       console.log("addoreditlocation failed")
       console.log('error', e)
-      // $scope.message = {"statusCode":502,"message":"Oops! Failed to update password. Please retry!"}  
+      // $scope.message = {"statusCode":502,"message":"Oops! Failed to update password. Please retry!"}
       $scope.init();
     });
   }
@@ -2170,14 +2418,105 @@ app.controller("triggerCtrl", function($scope,$window,$http,$location,$rootScope
 app.controller('formCtrl',function($rootScope,$scope,$location){
 
   $scope.init = function(){
-    $rootScope.currentTab = 'assets/views/feedbackform.html';
+    $rootScope.currentTab = 'assets/views/feedbackform1.html';
   }
 
 });
 
+/* Amendment by diksha */
+app.controller('previewCtrl',function ($rootScope,$scope,$http) {
 
-app.controller('formbuildCtrl',function($rootScope,$scope,$http){
+
+console.log($rootScope.data);
+
+
+
+
+});
+
+/* star rating directive */
+
+app.directive('starRating', function () {
+    return {
+        scope: {
+            rating: '=',
+            maxRating: '@',
+            readOnly: '@',
+            click: "&",
+            mouseHover: "&",
+            mouseLeave: "&"
+        },
+        restrict: 'EA',
+        template:
+            "<div style='display: inline-block; margin: 5px; padding: 5px; cursor:pointer;' ng-repeat='idx in maxRatings track by $index'> \
+                    <img style='height:40px;' ng-src='{{((hoverValue + _rating) <= $index) && \"http://www.codeproject.com/script/ratings/images/star-empty-lg.png\" || \"http://www.codeproject.com/script/ratings/images/star-fill-lg.png\"}}' \
+                    ng-Click='isolatedClick($index + 1)' \
+                    ng-mouseenter='isolatedMouseHover($index + 1)' \
+                    ng-mouseleave='isolatedMouseLeave($index + 1)'></img> \
+            </div>",
+        compile: function (element, attrs) {
+            if (!attrs.maxRating || (Number(attrs.maxRating) <= 0)) {
+                attrs.maxRating = '5';
+            };
+        },
+        controller: function ($scope, $element, $attrs) {
+            $scope.maxRatings = [];
+
+            for (var i = 1; i <= $scope.maxRating; i++) {
+                $scope.maxRatings.push({});
+            };
+
+            $scope._rating = $scope.rating;
+
+			$scope.isolatedClick = function (param) {
+				if ($scope.readOnly == 'true') return;
+
+				$scope.rating = $scope._rating = param;
+				$scope.hoverValue = 0;
+				$scope.click({
+					param: param
+				});
+			};
+
+			$scope.isolatedMouseHover = function (param) {
+				if ($scope.readOnly == 'true') return;
+
+				$scope._rating = 0;
+				$scope.hoverValue = param;
+				$scope.mouseHover({
+					param: param
+				});
+			};
+
+			$scope.isolatedMouseLeave = function (param) {
+				if ($scope.readOnly == 'true') return;
+
+				$scope._rating = $scope.rating;
+				$scope.hoverValue = 0;
+				$scope.mouseLeave({
+					param: param
+
+        });
+
+
+      }
+    }
+  }
+});
+
+app.controller('formbuildCtrl',function($rootScope,$scope,$http,$sce){
   $scope.init = function(){
+     // $scope.clearfield();
+  }
+    $scope.tabs = [
+      {
+        title: 'Build Form',
+        url: '/assets/app/views/buildform.html'
+      }, {
+        title: 'Preview Form',
+        url: '/assets/app/views/addnote.html'
+      }
+    ];
     console.log("Initing");
     console.log("loading");
     $scope.ans={};
@@ -2186,7 +2525,7 @@ app.controller('formbuildCtrl',function($rootScope,$scope,$http){
       $scope.feedbacks.Questions.concernoptions=[];
     var url=$rootScope.server+"/template/getfordash/?type=fbapp";
     console.log(url)
-    $http.get(url)  
+    $http.get(url)
     .success(function(data)
     {
       console.log(data);
@@ -2196,9 +2535,158 @@ app.controller('formbuildCtrl',function($rootScope,$scope,$http){
     {
       console.log(err)
     })
-  }
-   
-    
+
+
+    // $scope.save = function(){
+    //    // console.log("going")
+    //   $rootScope.data.push();
+    //   $scope.que.push({"que":''})
+    //   console.log($scope.que)
+    // }
+
+    $rootScope.data = {
+      singleSelect:null,
+      availableOptions: [
+      {name:''},
+      {name: 'Smiley'},
+      { name: 'Rating'},
+      { name: 'Button'},
+      { name: 'Text'}
+    ],
+      smileySelect:null,
+      availableSTypes:[
+        {name:''},
+      {name:'Color Smiley',url:'/assets/views/colorSmileyRadio'},
+      {name:'BlackWhite Smiley', url:'/assets/views/smileyradio'}
+    ],
+      ratingSelect:null,
+      availableRTypes:[
+        {name:''},
+      {name:'Star Rating'},
+      {name:'Five Number Rating'},
+      {name:'Ten Number Rating'}
+    ],
+      buttonSelect:null,
+      availableBTypes:[
+        {name:''},
+      {name:'Single SelectButton'},
+      {name:'MultiSelect Button'}
+    ],
+      textSelect:null,
+      availableTTypes:[
+        {name:''},
+      {name:'Short Text'},
+      {name:'Long Text'}
+],
+    }
+    console.log("Option",$rootScope.data)
+
+    $scope.required = false;
+
+    // $rootScope.formbuilders = [
+    //   {
+    //     "head": "",
+    //     "type": "",
+    //     "name": "",
+    //     "visible": false,
+    //     "dependsonparam": "",
+    //     "dependsonval": "",
+    //     "required": true,
+    //     "val": 0,
+    //     "desc": [],
+    //     "que": "",
+    //     "options": [{"Value":""}],
+    //     "concernoptions": []
+    //   }
+    //   ];
+
+  
+
+  $scope.trustedContent = $sce.trustAsHtml($rootScope.data.url);
+
+
+$scope.save = function(){
+// console.log("questionname:",$scope.question,"head:",$scope.Qname,"DTsmiley:" )
+// $scope.addques = true;
+$scope.obj={};
+
+
+$scope.obj.questionname=$scope.question;
+$scope.obj.Smiley= $rootScope.data.smileySelect;
+// if($scope.obj.Smiley=='Color Smiley')
+// {
+//   $scope.obj.url='assets/views/colorSmileyRadio.html'
+// }
+$scope.obj.Rating = $rootScope.data.ratingSelect;
+$scope.obj.button = $rootScope.data.buttonSelect;
+$scope.obj.tex = $rootScope.data.textSelect;
+$scope.obj.Input = $rootScope.data.textSelect;
+$scope.obj.head= $scope.Qname;
+
+ 
+console.log("data",$scope.obj)
+
+$scope.questionlist=[];
+$scope.questionlist.push($scope.obj);
+console.log($scope.questionlist);
+
+
+//$scope.question= [];
+ //$scope.Qname = [];
+ //$scope.data.smileySelect= [];
+
+ // $scope.clearfield();
+
+}
+
+$scope.clearfield = function(){
+
+// $scope.userForm.$setPristine();
+  // $scope.question = '';
+  // $scope.Qname = '';
+  
+}
+ // scope.question= "";
+ 
+
+
+$scope.selected = 0;
+
+$scope.label=[{ "Option": "", checked:false,}];
+$scope.multiselect = [{"Option":"",checked:false}]
+$scope.addOther = function () {
+// console.log(parentindex);
+$scope.label.push({ "Option": "", checked:false })
+$scope.multiselect.push({"Option":"", checked:false})
+}
+$scope.deleterefer = function(refer){
+  var index = $scope.label.indexOf(refer);
+  $scope.label.splice(index, 1);
+  $scope.multiselect.splice(index,1);
+};
+
+
+
+    $scope.starRating3 = 2;
+
+    $scope.click3 = function (param) {
+        console.log('Click');
+    };
+
+    $scope.mouseHover3 = function (param) {
+        console.log('mouseHover(' + param + ')');
+        $scope.hoverRating3 = param;
+    };
+
+    $scope.mouseLeave3 = function (param) {
+        console.log('mouseLeave(' + param + ')');
+        $scope.hoverRating3 = param + '*';
+
+      }
+  
+
+
+
 
       $scope.edit=function(answers,newquestion){
       $scope.init();
@@ -2210,18 +2698,18 @@ app.controller('formbuildCtrl',function($rootScope,$scope,$http){
       $scope.constants[answers.type].options=answers.options;
       console.log($scope.ans.options)
       $scope.ans = answers;
-     }                                  
-     
-                                     
-                                    
+     }
+
+
+
       $scope.add=function(a) {
       console.log("Adding a new Question");
       $scope.ans.concernoptions=[];
       if ($scope.feedbacks.Questions.indexOf(a) == -1) {
         console.log(a);
         console.log($scope.ans.type)
-        console.log($scope.constants[$scope.ans.type].options)
-        
+        // console.log($scope.constants[$scope.ans.type].options)
+
         if( $scope.ans.type== 'singledropdown'  || $scope.ans.type== 'multidropdown'|| $scope.ans.type== 'radio'|| $scope.ans.type== 'checkbox'){
 
             console.log("ifpart")
@@ -2268,33 +2756,33 @@ app.controller('formbuildCtrl',function($rootScope,$scope,$http){
                   $scope.ans.options=$scope.constants[$scope.ans.type].options
                   $scope.feedbacks.Questions.push(a);
               }
-           }  
-        
-            $scope.ans={};    
-    } 
+           }
+
+            $scope.ans={};
+    }
 
     $scope.cancel=function() {
         console.log("clear field");
         $scope.ans={};
-      
-    } 
+
+    }
     $scope.deletequestion = function (customer) {
         console.log(customer);
         var index = $scope.feedbacks.Questions.indexOf(customer);
         $scope.feedbacks.Questions.splice(index, 1);
-    };                                 
-    
+    };
+
 // *****************checkboxend***********************************************
 
- 
+
 $scope.publish=function(val){
   console.log(val);
   $scope.appval=angular.toJson(val);
   console.log($scope.appval);
-  
+
   $scope.feedback={};
   var url = $rootScope.server+"/template/post";
-  
+
   $scope.feedback["data"]=JSON.parse($scope.appval);
   $scope.feedback["type"]="fbapp";
   console.log($scope.feedback);
@@ -2304,7 +2792,7 @@ $scope.publish=function(val){
   console.log(url)
   var config = {
                 headers : {
-                    
+
                               'Content-Type': 'application/json;',
                               'Access-Control-Allow-Origin': '*'                          }
             }
@@ -2320,9 +2808,9 @@ $scope.publish=function(val){
                     "<hr />status: " + status +
                     "<hr />headers: " + header +
                     "<hr />config: " + config;
-            });        
+            });
 }
- 
+
    $scope.constants={
                       "colorSmileyRadio":   {"options":['Excellent','very good','good','bad','very bad'],
                                          "link" :""
@@ -2348,12 +2836,12 @@ $scope.publish=function(val){
                                         {"options":[],
                                           "link":""
                                          },
-                    
+
                     "checkbox":
                                         {"options":['1','2','3','4','5'],
                                           "link":""
                                          },
-                    
+
                      "likedislike":
                                         {"options":["like","dislike"],
                                           "link":""
@@ -2361,7 +2849,7 @@ $scope.publish=function(val){
                      "yesno":
                                         {"options":["yes","no"],
                                           "link":""
-                                         },                    
+                                         },
                     "radio":
                                         {"options":['1','2','3','4','5'],
                                           "link":""
@@ -2373,36 +2861,36 @@ $scope.publish=function(val){
                     "multidropdown":
                                         {"options":['1','2','3','4','5'],
                                           "link":""
-                                         },                     
+                                         },
                     "refer":
                                         {"options":['1','2','3','4','5'],
                                           "link":""
-                                         }                                          
+                                         }
                     }
     $scope.type= '';
-    $scope.anstypes = [  
+    $scope.anstypes = [
     "smileyradio","colorSmileyRadio","radio","refer","likedislike","yesno", "multidropdown","singledropdown","checkbox","shorttext","longtext","rating","nps"];
 
 
 $scope.IsansSelected=function()
-{ 
+{
   console.log($scope.ans.type)
   if($scope.selectedAns)
   {
-    
+
     $scope.ans.option = $scope.constants[ans.type];
     if($scope.selOptions.optionable )
       return true;
   }
   else
 
-   return false 
+   return false
 
 }
 
 
 
-  
+
 
 
  $scope.options = []

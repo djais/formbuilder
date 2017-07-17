@@ -5,14 +5,14 @@
 
 .fivepadding{
   padding:5px;
-} 
+}
 
 .tags .tag {
    display: inline-block;
    margin-right: 5px;
    font-size: 13px;
 }
-  
+
 .tag .close {
    font-size: 14px;
    margin-left: 5px;
@@ -113,3 +113,55 @@ color:#5cb85c;
 {
 color:#ff7857;
 }
+/* Css by Diksha */
+.tab-v2 .nav-tabs li.active a {
+    background: rgb(255, 255, 255);
+    padding: 7px 15px 9px;
+    border-width: 1px 1px;
+    border-style: solid solid;
+    border-color: rgb(238, 238, 238) rgb(238, 238, 238);
+    border-image: initial;
+    border-top: 2px solid rgb(52, 152, 219);
+    border-bottom: none !important;
+}
+.form-control:focus{  -webkit-box-shadow: none;
+box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #4FB3F5;
+}
+.has-error .form-control:focus{box-shadow: none; -webkit-box-shadow: none;}
+.ryt-choice{
+  padding-left: 0px !important;
+  padding-right:0px !important;
+  width:40px;
+  text-align: center;
+  font-family: arial;
+  font-size:18px !important;
+  font-weight: 600 !important;
+}
+.selection{
+  background-color:#53C867 !important;
+  color: #fff !important;
+  font-size:20px;
+  /*width:40px;*/
+  border-radius: 10px;
+  text-align: center;
+  padding: 5px;
+}
+.option-type-indicator {
+    display: inline-block;
+    margin-right: 5px;
+
+  }
+
+  .ryt-golden-color{
+  color: rgba(255, 215, 0, 0.7);
+}
+.panel-primary {
+    border-color: #DAE8F8   !important;
+}
+
+.panel-primary>.panel-heading {
+    color:#17202A    !important;
+    background-color: #DAE8F8   !important;
+    border-color: #DAE8F8 !important;
+}
+

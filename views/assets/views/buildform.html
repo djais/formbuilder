@@ -1,0 +1,254 @@
+ <div class="x_panel tile">
+<div class="col-xs-12" style="margin-top:2%;" ng-controller="formbuildCtrl" ng-init="init()" ng-cloak>
+      <!-- <div class="container" > -->
+      <div class="container-fluid">
+      	<div class="row col-xs-12"style="padding:0px;">
+      		<div class="col-md-7"style="padding:0px;">
+      			<div class="panel panel-primary animated fadeInLeft">
+      				<div class="panel-heading">
+      					<h3 class="panel-title">Create Form</h3>
+      				</div>
+      				<div class="panel-body" style="height:100%;overflow:auto;">
+                <form name="userForm" ng-submit="save()">
+                <div class="col-xs-12" style="margin-left:-3%">
+                  <div class="col-xs-12">
+                    <input type="text" class="form-control" ng-model="title"placeholder="Form Title" />
+                  </div>
+                  <!-- <div class="box box-primary"  style="padding:10px;"> -->
+                    <div class="col-xs-12" style="margin-top:2%;">
+                      <!-- <div class="col-xs-12"> -->
+                        <div class="form-group">
+                          <label class="text-muted" for="name"> Enter your Question </label>
+                        <input type="text" class="form-control " ng-model="question"  name="question"  id="validate-text" maxlength="140" placeholder="Eg: Please rate our service" ng:required/>
+                      </div>
+<!--                     </div>
+ -->                  </div>
+
+                     <div class="col-xs-12">
+                        <div class="form-group" >
+                          <label class="text-muted"  for="name"> Question Name </label>
+                        <input type="text" class="form-control" ng-model="Qname"  name="qname" id="validate-text" maxlength="140" placeholder="Eg: Service" required/>
+                      </div>
+                    </div>
+
+                
+     <!--          <div class="col-xs-12 form-group">
+    <label class="text-muted" for="number1"><span class="field-name">Question order</span></label>
+    <input class="form-control" id="number1" name="number1" type="number" min="0" max="1" />
+  </div> -->
+
+                <div class= "col-xs-12 ">
+                  <div  class="form-group" >
+                      <label class="text-muted" for="answerType"> Select Answer Type </label><br>
+                      <select class="form-control" data-width="100%" name="singleSelect" ng-model="data.singleSelect">
+                        <option ng-repeat="option in data.availableOptions" value="{{option.name}}">{{option.name}}</option>{{option}}
+                      </select>
+
+                </div>
+              </div>
+
+
+               <div class="col-xs-12" ng-show="data.singleSelect == 'Smiley'">
+                  <div class="form-group">
+                    <label class="text-muted" for="answerType"> Display Type </label><br>
+                    <select class="form-control" data-width="100%" id="smileySelect" name="smileySelect" ng-model="data.smileySelect">
+                      <option  ng-repeat="option in data.availableSTypes" value="{{option.name}}">{{option.name}}</option>
+                      </select> <br>
+                  </div>
+                </div>
+
+                <div class="col-xs-12 " ng-show= "data.singleSelect == 'Smiley' && data.smileySelect == 'Color Smiley'">
+                  <div ng-model="csmiley"  name="csmiley" ng-include src="'assets/views/colorSmileyRadio.html'"></div>
+                  
+
+                </div>
+
+                  <div class="col-xs-12 "  ng-show= "data.singleSelect == 'Smiley' && data.smileySelect  == 'BlackWhite Smiley'">
+                  <div ng-include src="'assets/views/smileyradio.html'" ng-model="bwsmiley" >
+                     
+                </div>
+                
+          </div>
+
+                <div class="col-xs-12" ng-show="data.singleSelect == 'Rating'">
+                  <div class="form-group">
+                    <label class="text-muted" for="answerType"> Display Type </label><br>
+                    <select class="form-control" data-width="100%" id="ratingSelect" name="ratingSelect" ng-model="data.ratingSelect">
+                      <option ng-repeat="option in data.availableRTypes" value="{{option.name}}">{{option.name}}</option>
+                    </select><br>
+                  </div>
+                </div>
+                <div class="col-xs-12 "  ng-show= "data.singleSelect == 'Rating'&& data.ratingSelect == 'Star Rating'">
+                  <div class="form-group" >
+                    <div star-rating rating="starRating3" click="click3(param)" mouse-hover="mouseHover3(param)" mouse-leave="mouseLeave3(param)">
+                    </div>
+                  </div>
+                  
+                </div>
+                <div class="col-xs-12 col-lg-12 "  ng-show= "data.singleSelect == 'Rating' && data.ratingSelect == 'Five Number Rating'">
+                  <div class="form-group" ng-required="required" ng-include src="'assets/views/NumRate.html'">
+                    
+                  </div>
+                 
+
+                </div>
+                <div class="col-xs-12 col-lg-12 "  ng-show= "data.singleSelect == 'Rating' && data.ratingSelect == 'Ten Number Rating'">
+                  <div class="form-group"  ng-model="selected.numRating5" ng-include src="'assets/views/nps.html'">
+                </div>
+                  
+                </div>
+
+                 <div class="col-xs-12"  ng-show="data.singleSelect == 'Button'">
+                  <div class="form-group">
+                    <label class="text-muted" for="answerType"> Display Type </label><br>
+                    <select class=" form-control" data-width="100%" id="buttonSelect" name="buttonSelect" ng-model="data.buttonSelect">
+                      <option ng-repeat="option in data.availableBTypes" value="{{option.name}}">{{option.name}}</option>
+                      </select><br>
+                  </div>
+                </div>
+
+                <div class="col-xs-12 col-lg-12 col-md-12 " ng-repeat="refer in label" ng-show="data.singleSelect == 'Button'&& data.buttonSelect == 'Single SelectButton'">
+                  <div class="col-xs-1" >
+                    <input type="radio"  name="selected"ng-model="$parent.selected" ng-value="refer"></input>
+                  </div>
+                  <div class= "col-xs-5 form-group"style="padding:0px;">
+                    <input type="text" class=" form-control" placeholder="Option Example:Yes"> </input>
+                  </div>
+                  <div class= "form-group">
+                    <button type="button" class="btn btn-primary addButton" ng-show="$last" ng-click='addOther()'><i class="fa fa-plus"></i></button>
+                    <button class="btn btn-danger deletButton" style="margin-top:25px;"ng-show="label.length>1 && !$last" ng-click="deleterefer(refer)"><i class="fa fa-trash-o"></i></button>
+                  <input type="checkbox" ng-model="refer.checked" > concerns required?
+
+                  </div>
+               
+
+              </div>
+            
+              <div class="col-md-12 col-xs-12" ng-show="data.singleSelect == 'Button'&& data.buttonSelect == 'Single SelectButton'">
+                <div class="form-group" style="margin-left: 0%;">
+                  <label class="text-muted" for="name"> concern options</label>
+                  <select ng-model="ans.concernoptions" multiple ng-options="i for i in constants[ ans.type].options"  class="form-control" disabled><option value="">Concerns </option>
+                  </select>
+                </div>
+                  
+              </div>
+
+              <div class="col-xs-12 col-lg-12 " ng-repeat="multi in multiselect" ng-show="data.singleSelect == 'Button'&&
+              data.buttonSelect == 'MultiSelect Button'">
+                  <div class="col-xs-1 pull right form-group"  >
+                    <input type="checkbox" ng-model="multi.checked" ></input>
+                  </div>
+                  <div class= "col-xs-5 form-group"style="padding:0px;">
+                    <input type="text" class=" form-control" placeholder="Option Example:Good"> </input>
+                  </div>
+                  <div class=" form-group" >
+                    <button type="button" class="btn btn-primary addButton" ng-show="$last" ng-click='addOther()'><i class="fa fa-plus"></i></button>
+                    <button class="btn btn-danger deletButton" style="margin-top:25px;"ng-show="multiselect.length>1 && !$last" ng-click="deleterefer(multi)"><i class="fa fa-trash-o"></i></button>
+                    <input type="checkbox" ng-model="refer.checked" > concerns required?
+                  </div>
+                  
+              </div>
+             
+            <div class="col-md-12 col-xs-12" ng-show="data.singleSelect == 'Button'&& data.buttonSelect == 'MultiSelect Button'">
+                <div class="form-group" style="margin-left: 0%;">
+                  <label class="text-muted" for="name"> concern options</label>
+                  <select ng-model="ans.concernoptions" multiple ng-options="i for i in constants[ ans.type].options"  class="form-control" disabled><option value="">Concerns </option>
+                  </select>
+                </div>
+                 
+              </div>
+
+            <div class="col-xs-12"  ng-show="data.singleSelect == 'Text'">
+              <div class="form-group">
+                <label class="text-muted" for="answerType"> Display Type </label><br>
+                <select class=" form-control" data-width="100%" id="textSelect" name="textSelect" ng-model="data.textSelect">
+                  <option ng-repeat="option in data.availableTTypes" value="{{option.name}}">{{option.name}}</option>
+                  </select><br>
+              </div>
+            </div>
+
+            <div class="col-xs-12 "  ng-show="data.singleSelect == 'Text' && data.textSelect == 'Short Text'" ng-model="param.val" >
+              <div  ng-include src="'assets/views/shorttext.html'" >
+              </div>
+            </div>
+
+            <div class="col-xs-12 " ng-show=" data.singleSelect == 'Text' && data.textSelect == 'Long Text'">
+              <div class="form-group" ng-include src="'assets/views/longtext.html'">
+                </div>
+              </div>
+            
+             <div class= "col-xs-12">
+                  <label class="text-muted" for="required"> Required: </label>
+                  <input type="checkbox"  id="required" ng-model="required" />
+                 <br></div>
+                
+                <div class="row">
+        <div class="col-xs-12" >
+
+          <button ng-click="reset()"  class="btn btn-default pull-left" style="margin-right: 6px;margin-left: 15px;" reset>Cancel</button>
+          <button ng-disabled="userForm.$error.required" ng-click="save()" class="btn btn-primary pull-left" style="margin-right:2px;">Save</button>
+           <!-- <button ng-click="addQuestion()" ng-show="addques" class="btn btn-primary pull-left" style="margin-right:2px;">Add Question</button> -->
+    </div>
+</div>
+    
+
+</div>
+
+</div>
+
+</div>
+</div>
+<!-- </div>
+ -->
+<div class="col-md-5" style="margin:0px;" ng-controller="formbuildCtrl" >
+   <div class="panel panel-primary animated fadeInRight" >
+        <div class="panel-heading">
+             <h3 class="panel-title">Form Preview</h3>
+       </div>
+   <!--     <div class="panel-body" style="height:600px;overflow:auto;"> 
+             <div>
+                <h2 ng-model="title"></h2><hr>
+                <p class="text-muted" ng-model="question"></p>
+               <div ng-model="fields.csmiley" ng-show= "data.singleSelect == 'Smiley' && data.smileySelect == 'Color Smiley'">
+                  <div ng-include src="'assets/views/colorSmileyRadio.html'"  >
+                </div></div>
+                 <div ng-show= "data.singleSelect == 'Smiley' && data.smileySelect == 'BlackWhite Smiley'">
+                  <div ng-include src="'assets/views/smileyradio.html'" >
+                </div>
+                
+          </div>
+                
+</div>
+</div> -->
+
+<!-- Preview form -->
+    <div class="panel-body" style="height:600px;overflow:auto;"> 
+               <h2 ng-model="title">{{title}}</h2><hr>
+             <div ng-repeat="i in questionlist"> {{i.questionname}} ***{{i.url}} 
+              
+                <p class="text-muted" ng-model="i.questionname">{{i.questionname}}</p>
+               <div ng-model="i.url" ng-show= "data.singleSelect == 'Smiley' && data.smileySelect == 'Color Smiley'">{{i.url}}
+                  <div ng-include src="'assets/views/colorSmileyRadio.html'"  >
+                </div></div>
+                 <div ng-show= "data.singleSelect == 'Smiley' && data.smileySelect == 'BlackWhite Smiley'" ng-model="bwsmiley">
+                  <div ng-include src="'assets/views/smileyradio.html'" >
+                </div>
+                
+          </div>
+                
+</div>
+</div>
+<!-- End -->
+</div>
+</div>
+</form>
+</div>
+</div> 
+</div>
+</div>
+</div> 
+</div>
+</div>
+<!-- </div> -->
+<!-- </div>
+ -->

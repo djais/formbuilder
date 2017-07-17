@@ -1,0 +1,194 @@
+       <div class="x_panel tile">
+          <div class="col-xs-12" style="margin-top:2%" ng-controller="previewCtrl" ng-init="init()" ng-cloak>
+            <!-- <div class="container" > -->
+            <div class="col-xs-12 jumbotron" style="padding:15px;border:1px gray;">
+              <form name="userForm">
+                <div class="col-xs-12" style="margin-left:-3%">
+                  <!-- <div class="box box-primary"  style="padding:10px;"> -->
+                    <div class="col-xs-12" >
+                      <div class="col-xs-12">
+                        <div class="form-group" >
+                          <label class="text-muted" class="control-label " for="name"> Fill your Question </label>
+                        <input type="text" class="form-control" ng-model="data.que"  name="Question" id="validate-text" maxlength="140" placeholder="Eg: Please rate our service" required>
+                      </div>
+                    </div>
+                  <div class="col-xs-12 ">
+                    <div  class="form-group" >
+                        <label class="text-muted" for="answerType"> Select Answer Type </label><br>
+                        <select class="selectpicker" data-width="50%" name="singleSelect" ng-model="data.singleSelect">
+
+                          <option value="">---Please select---</option>
+                          <option value="Smiley">Smiley</option>
+                          <option value="Rating">Rating</option>
+                          <option value="Button">Button</option>
+                          <option value="Text">Text</option>
+                        </select><br>
+                        </div>
+                </div>
+                <div class="col-xs-12" ng-show="data.singleSelect == 'Smiley'">
+                  <div class="form-group">
+                    <label class="text-muted" for="answerType"> Display Type </label><br>
+                    <select class="selectpicker" data-width="50%" id="smileySelect" name="smileySelect" ng-model="data.smileySelect">
+                      <option value="">Choose one of the following</option>
+                      <option value="colorSmiley">Color Smiley</option>
+                      <option value="BWSmiley">Black White Smiley</option>
+                    </select><br>
+                  </div>
+                </div>
+                <div class="col-xs-12" ng-if="data.singleSelect == 'Smiley'" ng-show= "data.smileySelect == 'colorSmiley'">
+                  <div class="form-group"  ng-model="selected.colorsmiley">
+                    <img src="/assets/app/img/YERTZ.png">
+                  </div>
+                </div>
+                <div class="col-xs-12" ng-if="data.singleSelect == 'Smiley'" ng-show= "data.smileySelect == 'BWSmiley'">
+                  <div class="form-group"  ng-model="selected.bwsmiley">
+                    <img width="500px" height="70px" src="/assets/app/img/BWSmiley.png">
+                  </div>
+                </div>
+                <div class="col-xs-12" ng-show="data.singleSelect == 'Rating'">
+                  <div class="form-group">
+                    <label class="text-muted" for="answerType"> Display Type </label><br>
+                    <select class="selectpicker" data-width="50%" id="ratingSelect" name="ratingSelect" ng-model="data.ratingSelect">
+                      <option value="">Choose one of the following</option>
+                      <option value="starRating">Star Rating</option>
+                      <option value="numRating5"> Five Number Rating</option>
+                      <option value="numRating10"> Ten Number Rating</option>
+                    </select><br>
+                  </div>
+                </div>
+                <div class="col-xs-12" ng-if="data.singleSelect == 'Rating'" ng-show= "data.ratingSelect == 'starRating'">
+                  <div class="form-group"  ng-model="selected.starRating">
+                    <div star-rating rating="starRating3" click="click3(param)" mouse-hover="mouseHover3(param)" mouse-leave="mouseLeave3(param)">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-xs-12" ng-if="data.singleSelect == 'Rating'" ng-show= "data.ratingSelect == 'numRating5'">
+                  <div class="form-group"  ng-model="selected.numRating5">
+                      <label class="text-muted" for="numrating"> Please rate on the scale of 1 to 5 </label><br>
+                      <div class="col-xs-1 col-md-1" style="color:black">1</div>
+                      <div class="col-xs-1 col-md-1" style="color:blue">2</div>
+                      <div class="col-xs-1 col-md-1" style="color:green">3</div>
+                      <div class="col-xs-1 col-md-1" style="color:yellow">4</div>
+                      <div class="col-xs-1 col-md-1" style="color:red">5</div>
+
+                  </div>
+
+                </div>
+                <div class="col-xs-12" ng-if="data.singleSelect == 'Rating'" ng-show= "data.ratingSelect == 'numRating10'">
+                  <div class="form-group"  ng-model="selected.numRating5">
+                      <label class="text-muted" for="numrating"> Please rate on the scale of 1 to 10 </label><br>
+                      <div class="col-xs-1 col-md-1" style="color:black">1</div>
+                      <div class="col-xs-1 col-md-1" style="color:blue">2</div>
+                      <div class="col-xs-1 col-md-1" style="color:green">3</div>
+                      <div class="col-xs-1 col-md-1" style="color:yellow">4</div>
+                      <div class="col-xs-1 col-md-1" style="color:red">5</div>
+                      <div class="col-xs-1 col-md-1" style="color:black">6</div>
+                      <div class="col-xs-1 col-md-1" style="color:blue">7</div>
+                      <div class="col-xs-1 col-md-1" style="color:green">8</div>
+                      <div class="col-xs-1 col-md-1" style="color:yellow">9</div>
+                      <div class="col-xs-1 col-md-1" style="color:red">10</div>
+
+                  </div>
+
+                </div>
+
+                <div class="col-xs-12"  ng-show="data.singleSelect == 'Button'">
+                  <div class="form-group">
+                    <label class="text-muted" for="answerType"> Display Type </label><br>
+                    <select class="selectpicker" data-width="50%" id="buttonSelect" name="buttonSelect" ng-model="data.buttonSelect">
+                      <option value="">Choose one of the following</option>
+                      <option value="singleSel">Single SelectButton</option>
+                      <option value="multiSel"> Multi SelectButton</option>
+                      </select><br>
+                  </div>
+                </div>
+
+                <div class="col-xs-12" ng-if="data.singleSelect == 'Button'" ng-show="data.buttonSelect == 'singleSel'">
+                  <div class="form-group">
+                    <label class="text-muted">
+                      <input type="radio" ng-model="color.name" value="option1">
+                      Option 1
+                    </label>&nbsp;&nbsp;
+                    <label class="text-muted">
+                      <input type="radio" ng-model="color.name" value="option2">
+                      Option 2
+                    </label>
+                  </div>
+                </div>
+                <div class="col-xs-12" ng-show="data.buttonSelect == 'singleSel'">
+                  <label class="text-muted" for="optionText"> Please provide text for option </label><br>
+                  <div class= "col-md-4">
+                    <input type="text" class="form-control" placeholder="Option Example:Yes"> </input>
+                  </div>
+                  <div class="col-md-4">
+                  <button type="button" class="btn btn-default addButton"><i class="fa fa-plus"></i></button>
+                </div>
+              </div>
+              <div class="col-xs-12" ng-if="data.singleSelect == 'Button'" ng-show="data.buttonSelect == 'multiSel'">
+                <div class="form-group">
+                  <label class="text-muted">
+                    <input type="checkbox" ng-model="checkboxModel.value1" >
+                    Option 1
+                  </label>&nbsp;&nbsp;
+                  <label class="text-muted">
+                    <input type="checkbox" ng-model="checkboxModel.value2" ng-true-value="'YES'" ng-false-value="'NO'">
+                    Option 2
+                  </label>&nbsp;&nbsp;
+                  <label class="text-muted">
+                    <input type="checkbox" ng-model="checkboxModel.value3" ng-true-value="'YES'" ng-false-value="'NO'">
+                    Option 3
+                  </label>
+                </div>
+              </div>
+              <div class="col-xs-12" ng-show="data.buttonSelect == 'multiSel'">
+                <label class="text-muted" for="optionText"> Please provide text for option </label><br>
+                <div class= "col-md-4">
+                  <input type="text" class="form-control" placeholder="Option Example:Yes"> </input>
+                </div>
+                <div class="col-md-4">
+                <button type="button" class="btn btn-default addButton"><i class="fa fa-plus"></i></button>
+              </div>
+            </div>
+            <div class="col-xs-12"  ng-show="data.singleSelect == 'Text'">
+              <div class="form-group">
+                <label class="text-muted" for="answerType"> Display Type </label><br>
+                <select class="selectpicker" data-width="50%" id="textSelect" name="textSelect" ng-model="data.textSelect">
+                  <option value="">Choose one of the following</option>
+                  <option value="shortText">Short Text</option>
+                  <option value="longText"> Long Text</option>
+                  </select><br>
+              </div>
+            </div>
+
+            <div class="col-xs-12" ng-if="data.singleSelect == 'Text'" ng-show="data.textSelect == 'shortText'">
+              <div class="form-group">
+                  <div class = "col-xs-12">
+                  <input type="text" class = "col-xs-6" ng-model="shorttext" ></input>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-xs-12" ng-if="data.singleSelect == 'Text'" ng-show="data.textSelect == 'longText'">
+              <div class="form-group">
+                  <div class = "col-xs-12">
+                  <textarea type="text" class = "col-xs-6" ng-model="longtext" cols="1" rows="5"></textarea>
+                </div>
+              </div>
+            </div>
+            &nbsp;&nbsp;
+                </div>
+              </div>
+
+
+
+      <div class="row">
+        <div class="col-xs-12" >
+
+          <button ng-click="cancel()"  class="btn btn-primary pull-left" style="margin-right: 6px;margin-left: 15px;">Cancel</button>
+          <button ng-click="add(ans)" ng-disabled="userForm.$invalid"  class="btn btn-primary pull-left" style="margin-right:2px;">save</button>
+        </div>
+      </div>
+    </form>
+    </div>
+      </div>
+</div>

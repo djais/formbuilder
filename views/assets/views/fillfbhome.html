@@ -1,0 +1,22 @@
+<div class='col-xs-12 scrollable' style='height:100%; padding: 0px;' ng-controller="FbController" ng-cloak>
+	<div class="scrollable-content section watermark">
+
+		<div ng-repeat="param in fbparameters">
+			<div class="col-xs-12" style="padding:10px; margin-bottom:15px;" ng-hide="shouldihide($index)" ng-include src="'assets/views/'+param.type+'.html'">
+
+
+			</div>
+		</div>
+		
+		<div ng-show="!allfilled()"> Please provide {{tobefilled}}</div>
+		<div class="col-xs-12" ng-show="allfilled()" ng-cloak>
+			<hr style="margin:10px">
+			<button class="col-xs-12 btn" style="min-height:40px; margin-top: 30px; background:#136621;" ng-click="submit()"><b style='color:#ffffff;'>Submit</b></button>
+		</div>
+		<div class="col-xs-12" ng-show="!allfilled()" ng-cloak id="submitbutton">
+			<hr style="margin:10px">
+			<button class="col-xs-12 btn" style="min-height:40px; margin-top: 30px; background:#d9534f;">     <b style='color:#ffffff;'>Please fill the details</b></button>
+
+		</div>
+	</div>
+</div>
