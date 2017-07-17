@@ -2602,7 +2602,6 @@ app.controller('formbuildCtrl',function($rootScope,$scope,$http,$sce){
 
   
 
-  $scope.trustedContent = $sce.trustAsHtml($rootScope.data.url);
 
 
 $scope.Add = function(){
@@ -2643,14 +2642,16 @@ $scope.save=function(){
  var url = $rootScope.server+"/template/createfb";
  $http.post(url,postd);
 }
-$scope.clearfield = function(){
+// Diksha - Reset form 
+$scope.reset = function(){
 
-// $scope.userForm.$setPristine();
-  // $scope.question = '';
-  // $scope.Qname = '';
-  
+  $scope.data.singleSelect = "";
+  $scope.question = "";
+  $scope.title = "";
+  $scope.Qname = "";
+
 }
- // scope.question= "";
+ // End reset form
  
 
 
