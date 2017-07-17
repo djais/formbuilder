@@ -26,9 +26,15 @@
 
                      <div class="col-xs-12">
                         <div class="form-group" >
-                          <label class="text-muted"  for="name"> Question Name </label>
+                          <label class="text-muted popup" ng-click="leadme()"  for="name"> Parameter  <i class="glyphicon glyphicon-question-sign"></i>
+                          </label>
+                         <!--  <div class="popup" ng-click="leadme()">
+        <i class="glyphicon glyphicon-question-sign"></i>
+        <span class="popuptext" id="myPopup">leading option</span>
+    </div> -->
                         <input type="text" class="form-control" ng-model="Qname"  name="qname" id="validate-text" maxlength="140" placeholder="Eg: Service" required/>
                       </div>
+
                     </div>
 
                 
@@ -185,8 +191,8 @@
                 <div class="row">
         <div class="col-xs-12" >
 
-          <button ng-click="reset()"  class="btn btn-default pull-left" style="margin-right: 6px;margin-left: 15px;" reset>Cancel</button>
-          <button ng-disabled="userForm.$error.required" ng-click="save()" class="btn btn-primary pull-left" style="margin-right:2px;">Save</button>
+          <button ng-click="reset()"  class="btn btn-default pull-left" style="margin-right: 6px;margin-left: 15px;" reset>Reset</button>
+          <button ng-disabled="userForm.$error.required" ng-click="save()" class="btn btn-primary pull-left" style="margin-right:2px;">Add</button>
            <!-- <button ng-click="addQuestion()" ng-show="addques" class="btn btn-primary pull-left" style="margin-right:2px;">Add Question</button> -->
     </div>
 </div>
@@ -202,8 +208,10 @@
  -->
 <div class="col-md-5" style="margin:0px;" ng-controller="formbuildCtrl" >
    <div class="panel panel-primary animated fadeInRight" >
-        <div class="panel-heading">
+        <div class="panel-heading" style="height:50px;">
+           <button ng-disabled="userForm.$error.required" ng-click="save()" class="btn btn-primary " style=" float: right;">Save</button>
              <h3 class="panel-title">Form Preview</h3>
+           
        </div>
    <!--     <div class="panel-body" style="height:600px;overflow:auto;"> 
              <div>
