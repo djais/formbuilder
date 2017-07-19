@@ -199,14 +199,14 @@
     
 
 </div>
-
+</form>
 </div>
 
 </div>
 </div>
 <!-- </div>
  -->
-<div class="col-md-5" style="margin:0px;" ng-controller="formbuildCtrl" >
+<div class="col-md-5" style="margin:0px;">
    <div class="panel panel-primary animated fadeInRight" >
         <div class="panel-heading" style="height:50px;">
            <button ng-disabled="userForm.$error.required" ng-click="save()" class="btn btn-primary " style=" float: right;">Save</button>
@@ -232,15 +232,19 @@
 <!-- Preview form -->
     <div class="panel-body" style="height:600px;overflow:auto;"> 
                <h2 ng-model="title">{{title}}</h2><hr>
-             <div ng-repeat="i in questionlist"> {{i.questionname}} ***{{i.url}} 
+             <div ng-repeat="i in questionlist "> 
               
-                <p class="text-muted" ng-model="i.questionname">{{i.questionname}}</p>
-               <div ng-model="i.url" ng-show= "data.singleSelect == 'Smiley' && data.smileySelect == 'Color Smiley'">{{i.url}}
-                  <div ng-include src="'assets/views/colorSmileyRadio.html'"  >
-                </div></div>
-                 <div ng-show= "data.singleSelect == 'Smiley' && data.smileySelect == 'BlackWhite Smiley'" ng-model="bwsmiley">
-                  <div ng-include src="'assets/views/smileyradio.html'" >
-                </div>
+                <p class="text-muted" ng-model="i.questionname">
+                  {{i.questionname}}
+                  <span ng-show="required" style="color:red"> *</span>
+                </p>
+<!--                <div ng-show= "data.singleSelect == 'Smiley' && data.smileySelect == 'Color Smiley'">
+ -->              
+    <!--  <div ng-include sc="'assets/views/colorSmileyRadio.html'"  > -->
+    
+              <div ng-model="i.newurl" ng-include="i.url"  >
+                 </div>
+                
                 
           </div>
                 
@@ -249,7 +253,7 @@
 <!-- End -->
 </div>
 </div>
-</form>
+
 </div>
 </div> 
 </div>

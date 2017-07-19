@@ -2503,10 +2503,11 @@ app.directive('starRating', function () {
     }
   }
 });
+/* End of star rating directive */
 
+/* Form build controller - page (buildform.html) */
 app.controller('formbuildCtrl',function($rootScope,$scope,$http,$sce){
   $scope.init = function(){
-     // $scope.clearfield();
   }
     $scope.tabs = [
       {
@@ -2537,13 +2538,7 @@ app.controller('formbuildCtrl',function($rootScope,$scope,$http,$sce){
     })
 
 
-    // $scope.save = function(){
-    //    // console.log("going")
-    //   $rootScope.data.push();
-    //   $scope.que.push({"que":''})
-    //   console.log($scope.que)
-    // }
-
+  
     $rootScope.data = {
       singleSelect:null,
       availableOptions: [
@@ -2580,8 +2575,9 @@ app.controller('formbuildCtrl',function($rootScope,$scope,$http,$sce){
 ],
     }
     console.log("Option",$rootScope.data)
-
-    $scope.required = false;
+$scope.questionlist=[];
+$scope.obj={};
+$scope.required = false;
 
     // $rootScope.formbuilders = [
     //   {
@@ -2603,19 +2599,21 @@ app.controller('formbuildCtrl',function($rootScope,$scope,$http,$sce){
   
 
 
+/*Add question function*/
 
 $scope.Add = function(){
-// console.log("questionname:",$scope.question,"head:",$scope.Qname,"DTsmiley:" )
-// $scope.addques = true;
-$scope.obj={};
-
 
 $scope.obj.questionname=$scope.question;
 $scope.obj.Smiley= $rootScope.data.smileySelect;
-// if($scope.obj.Smiley=='Color Smiley')
-// {
-//   $scope.obj.url='assets/views/colorSmileyRadio.html'
-// }
+if($scope.obj.Smiley=='Color Smiley')
+{
+  $scope.obj.url='assets/views/colorSmileyRadio.html'
+}
+if($scope.obj.Smiley=='BlackWhite Smiley'){
+
+    $scope.obj.url='assets/views/smileyRadio.html'
+
+}
 $scope.obj.Rating = $rootScope.data.ratingSelect;
 $scope.obj.button = $rootScope.data.buttonSelect;
 $scope.obj.tex = $rootScope.data.textSelect;
@@ -2625,18 +2623,21 @@ $scope.obj.head= $scope.Qname;
  
 console.log("data",$scope.obj)
 
-$scope.questionlist=[];
-$scope.questionlist.push($scope.obj);
+
+// $scope.questionlist.push($scope.obj);
+$scope.questionlist.push($scope.obj)
 console.log($scope.questionlist);
 
+ // clear fields after adding each  question;
 
-//$scope.question= [];
- //$scope.Qname = [];
- //$scope.data.smileySelect= [];
+$scope.question= "";
+ $scope.Qname = "";
+ $scope.data.singleSelect= "";
 
- // $scope.clearfield();
 
-}
+} // End of clear fields
+/* End of add question*/
+
 $scope.save=function(){
    var postd={"someting":"data"}
  var url = $rootScope.server+"/template/createfb";
@@ -2653,7 +2654,7 @@ $scope.reset = function(){
 }
  // End reset form
  
-
+/*adding multiple options in single and multiselect*/
 
 $scope.selected = 0;
 
@@ -2670,8 +2671,11 @@ $scope.deleterefer = function(refer){
   $scope.multiselect.splice(index,1);
 };
 
+/* End code*/
 
 
+
+/* Star rating*/
     $scope.starRating3 = 2;
 
     $scope.click3 = function (param) {
@@ -2688,8 +2692,7 @@ $scope.deleterefer = function(refer){
         $scope.hoverRating3 = param + '*';
 
       }
-  
-
+  /* End code*/
 
 
 
@@ -2902,3 +2905,4 @@ $scope.IsansSelected=function()
 
 
 });
+/* End formbuilderCtrl*/
