@@ -1,6 +1,6 @@
 <div class="col-xs-12 col-lg-8 col-lg-offset-2 " style="padding:0px;">
 	<label>{{param.que}}</label><br>{{fbparameters[5]}}
-	<div class='col-md-3 col-xs-6 col-sm-6' style="padding:5px;" ng-repeat="option in param.options track by $index" ng-click="setVal($parent.$index,option)" align="center">
+	<div class='col-md-3 col-xs-2 col-sm-2' style="padding:5px;" ng-repeat="option in param.options track by $index" ng-click="setVal($parent.$index,option)" align="center">
 	    <div class='ryt-whynot5-btn' ng-class="{'ryt-whynot5-btn-selected':isVal($parent.$index,option)}">{{option}}</div>
 	</div>
 </div>

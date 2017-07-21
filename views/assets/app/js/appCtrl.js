@@ -1903,18 +1903,7 @@ app.controller('advancefilterfbCtrl', function ($scope,$rootScope) {
 
 });
 
-app.controller('previewFormCtrl',function($rootScope,$scope){
 
-  $scope.newField = {};
-  $scope.fields = [{
-
-    type: 'text',
-    que: ''
-
-  }];
-
-
-})
 
 app.controller('FbController', function ($rootScope, $scope, $http, $location) {
 
@@ -2423,16 +2412,7 @@ app.controller('formCtrl',function($rootScope,$scope,$location){
 
 });
 
-/* Amendment by diksha */
-app.controller('previewCtrl',function ($rootScope,$scope,$http) {
 
-
-console.log($rootScope.data);
-
-
-
-
-});
 
 /* star rating directive */
 
@@ -2538,101 +2518,116 @@ app.controller('formbuildCtrl',function($rootScope,$scope,$http,$sce){
     })
 
 
+    // $scope.questions= [
+
+    //   {qid:"", question:""}
+
+    // ] 
   
     $rootScope.data = {
       singleSelect:null,
       availableOptions: [
-      {name:''},
-      {name: 'Smiley'},
-      { name: 'Rating'},
-      { name: 'Button'},
-      { name: 'Text'}
+      {type:''},
+      {type: 'Smiley'},
+      { type: 'Rating'},
+      { type: 'Button'},
+      { type: 'Text'}
     ],
       smileySelect:null,
       availableSTypes:[
-        {name:''},
-      {name:'Color Smiley',url:'/assets/views/colorSmileyRadio'},
-      {name:'BlackWhite Smiley', url:'/assets/views/smileyradio'}
+        {type:''},
+      {type:'Color Smiley',url:'/assets/views/colorSmileyRadio'},
+      {type:'BlackWhite Smiley', url:'/assets/views/smileyradio'}
     ],
       ratingSelect:null,
       availableRTypes:[
-        {name:''},
-      {name:'Star Rating'},
-      {name:'Five Number Rating'},
-      {name:'Ten Number Rating'}
+        {type:''},
+      {type:'Star Rating', url:'/assets/views/colorSmileyRadio'},
+      {type:'Five Number Rating', url:'/assets/views/NumRate'},
+      {type:'Ten Number Rating', url:'/assets/views/nps'}
     ],
       buttonSelect:null,
       availableBTypes:[
-        {name:''},
-      {name:'Single SelectButton'},
-      {name:'MultiSelect Button'}
+        {type:''},
+      {type:'Single SelectButton'},
+      {type:'MultiSelect Button'}
     ],
       textSelect:null,
       availableTTypes:[
-        {name:''},
-      {name:'Short Text'},
-      {name:'Long Text'}
+        {type:''},
+      {type:'Short Text', url:'/assets/views/shorttext'},
+      {type:'Long Text', url:'/assets/views/longtext'}
 ],
     }
     console.log("Option",$rootScope.data)
 $scope.questionlist=[];
 $scope.obj={};
-$scope.required = false;
 
-    // $rootScope.formbuilders = [
-    //   {
-    //     "head": "",
-    //     "type": "",
-    //     "name": "",
-    //     "visible": false,
-    //     "dependsonparam": "",
-    //     "dependsonval": "",
-    //     "required": true,
-    //     "val": 0,
-    //     "desc": [],
-    //     "que": "",
-    //     "options": [{"Value":""}],
-    //     "concernoptions": []
-    //   }
-    //   ];
 
-  
+  $scope.required = false;
 
 
 /*Add question function*/
 
 $scope.Add = function(){
+  var foo ={};
 
-$scope.obj.questionname=$scope.question;
-$scope.obj.Smiley= $rootScope.data.smileySelect;
-if($scope.obj.Smiley=='Color Smiley')
+foo.que=$scope.que;
+
+
+
+foo.Smiley= $rootScope.data.smileySelect;
+if(foo.Smiley=='Color Smiley')
 {
-  $scope.obj.url='assets/views/colorSmileyRadio.html'
+  foo.url='assets/views/colorSmileyRadio.html'
 }
-if($scope.obj.Smiley=='BlackWhite Smiley'){
+if(foo.Smiley=='BlackWhite Smiley'){
 
-    $scope.obj.url='assets/views/smileyRadio.html'
+    foo.url='assets/views/smileyRadio.html'
 
 }
-$scope.obj.Rating = $rootScope.data.ratingSelect;
-$scope.obj.button = $rootScope.data.buttonSelect;
-$scope.obj.tex = $rootScope.data.textSelect;
-$scope.obj.Input = $rootScope.data.textSelect;
-$scope.obj.head= $scope.Qname;
+foo.Rating = $rootScope.data.ratingSelect;
+if(foo.Rating == 'Star Rating'){
 
- 
-console.log("data",$scope.obj)
+    foo.url = 'assets/views/rating.html'
+}
+if(foo.Rating == 'Five Number Rating'){
+
+  foo.url = 'assets/views/NumRate.html'
+
+}
+if(foo.Rating == 'Ten Number Rating'){
+
+    foo.url = 'assets/views/nps.html'
+
+}
+
+foo.button = $rootScope.data.buttonSelect;
+
+foo.tex = $rootScope.data.textSelect;
+if(foo.tex == 'Short Text'){
+  foo.url = 'assets/views/shorttext.html'
+}
+if(foo.tex == 'Long Text'){
+
+  foo.url = 'assets/views/longtext.html'
+}
+
+// foo.Input = $rootScope.data.textSelect;
+foo.head= $scope.head;
 
 
+console.log(foo);
 // $scope.questionlist.push($scope.obj);
-$scope.questionlist.push($scope.obj)
+$scope.questionlist.push(foo);
 console.log($scope.questionlist);
 
  // clear fields after adding each  question;
 
-$scope.question= "";
- $scope.Qname = "";
+$scope.que= "";
+ $scope.head = "";
  $scope.data.singleSelect= "";
+ // $scope.required = false;
 
 
 } // End of clear fields
@@ -2676,22 +2671,22 @@ $scope.deleterefer = function(refer){
 
 
 /* Star rating*/
-    $scope.starRating3 = 2;
+    // $scope.starRating3 = 2;
 
-    $scope.click3 = function (param) {
-        console.log('Click');
-    };
+    // $scope.click3 = function (param) {
+    //     console.log('Click');
+    // };
 
-    $scope.mouseHover3 = function (param) {
-        console.log('mouseHover(' + param + ')');
-        $scope.hoverRating3 = param;
-    };
+    // $scope.mouseHover3 = function (param) {
+    //     console.log('mouseHover(' + param + ')');
+    //     $scope.hoverRating3 = param;
+    // };
 
-    $scope.mouseLeave3 = function (param) {
-        console.log('mouseLeave(' + param + ')');
-        $scope.hoverRating3 = param + '*';
+    // $scope.mouseLeave3 = function (param) {
+    //     console.log('mouseLeave(' + param + ')');
+    //     $scope.hoverRating3 = param + '*';
 
-      }
+    //   }
   /* End code*/
 
 
