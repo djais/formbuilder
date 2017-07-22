@@ -2595,7 +2595,7 @@ if(foo.Smiley=='Color Smiley')
 }
 if(foo.Smiley=='BlackWhite Smiley'){
 
-    foo.url='assets/views/smileyRadio.html'
+    foo.url='assets/views/smileyradio.html'
 
 }
 foo.Rating = $rootScope.data.ratingSelect;
