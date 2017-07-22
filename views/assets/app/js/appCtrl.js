@@ -28,7 +28,7 @@ app.config(function($routeProvider) {
   $routeProvider.when('/dlcpndtls',         {templateUrl: 'assets/views/dealsorcoupondtls.html', reloadOnSearch: false});
   $routeProvider.when('/feedbacks',         {templateUrl: 'assets/views/feedback.html', reloadOnSearch: false});
   $routeProvider.when('/fbdtls',            {templateUrl: 'assets/views/fbdtls.html', reloadOnSearch: false});
-  $routeProvider.when('/formbuilder',       {templateUrl: 'assets/views/buildform.html', reloadOnSearch: false});
+  $routeProvider.when('/formbuilder',       {templateUrl: 'assets/views/formtemplate.html', reloadOnSearch: false});
   $routeProvider.when('/insideapp',         {templateUrl: 'assets/views/insideapp.html', reloadOnSearch: false});
   $routeProvider.when('/settings',          {templateUrl: 'assets/views/settings.html', reloadOnSearch: false});
   $routeProvider.when('/locations',         {templateUrl: 'assets/views/locations.html', reloadOnSearch: false});
@@ -40,7 +40,7 @@ app.config(function($routeProvider) {
   $routeProvider.when('/newcatalogormenu',  {templateUrl: 'assets/views/newcatalogormenu.html', reloadOnSearch: false});
   $routeProvider.when('/users',             {templateUrl: 'assets/views/users.html', reloadOnSearch: false});
   $routeProvider.when('/uploadexcel',       {templateUrl: 'assets/views/uploadexcel.html', reloadOnSearch: false});
-  // $routeProvider.when('/addform',         {templateUrl: 'assets/views/buildform.html', reloadOnSearch: false});
+  $routeProvider.when('/buildform',         {templateUrl: 'assets/views/buildform.html', reloadOnSearch: false});
   $routeProvider.when('/preview',           {templateUrl: 'assets/views/previewform.html', reloadOnSearch: false});
 
 
@@ -2485,6 +2485,18 @@ app.directive('starRating', function () {
 });
 /* End of star rating directive */
 
+/* formtemplateCtrl*/
+app.controller('formtemplateCtrl',function($rootScope,$scope,$location){
+
+    $scope.create = function(){
+
+      $location.path('/buildform');
+    }
+
+});
+
+
+
 /* Form build controller - page (buildform.html) */
 app.controller('formbuildCtrl',function($rootScope,$scope,$http,$sce){
   $scope.init = function(){
@@ -2549,7 +2561,7 @@ app.controller('formbuildCtrl',function($rootScope,$scope,$http,$sce){
       buttonSelect:null,
       availableBTypes:[
         {type:''},
-      {type:'Single SelectButton'},
+      {type:'Single SelectButton', url:'/assets/views/radio'},
       {type:'MultiSelect Button'}
     ],
       textSelect:null,
@@ -2564,7 +2576,7 @@ $scope.questionlist=[];
 $scope.obj={};
 
 
-  $scope.required = false;
+  // $scope.required = false;
 
 
 /*Add question function*/
@@ -2603,6 +2615,16 @@ if(foo.Rating == 'Ten Number Rating'){
 }
 
 foo.button = $rootScope.data.buttonSelect;
+if(foo.button == 'Single SelectButton'){
+
+    foo.url = 'assets/views/radio.html'
+
+}
+if(foo.button == 'MultiSelect Button'){
+
+    foo.url = 'assets/views/checkbox.html'
+
+}
 
 foo.tex = $rootScope.data.textSelect;
 if(foo.tex == 'Short Text'){
@@ -2616,6 +2638,12 @@ if(foo.tex == 'Long Text'){
 // foo.Input = $rootScope.data.textSelect;
 foo.head= $scope.head;
 
+foo.required = $scope.required;
+// foo.roption = $scope.label.push({ "Option": "", checked:false })
+
+// foo.chkoption = $scope.multiselect.push({"Option":"", checked:false})
+
+console.log("radio",foo.roption)
 
 console.log(foo);
 // $scope.questionlist.push($scope.obj);
