@@ -2562,7 +2562,7 @@ app.controller('formbuildCtrl',function($rootScope,$scope,$http,$sce){
       availableBTypes:[
         {type:''},
       {type:'Single SelectButton', url:'/assets/views/radio'},
-      {type:'MultiSelect Button'}
+      {type:'MultiSelect Button',url:'/assets/views/checkbox'}
     ],
       textSelect:null,
       availableTTypes:[
